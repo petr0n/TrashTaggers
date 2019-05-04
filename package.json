@@ -1,5 +1,5 @@
 {
-  "name": "TrashTaggers",
+  "name": "trashtaggers",
   "version": "1.0.0",
   "description": "Following on the current viral picking up trash social media campaign - this site will help coordinate clean up actions.",
   "main": "server.js",
