@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "TrashTaggers",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "Following on the current viral picking up trash social media campaign - this site will help coordinate clean up actions.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
