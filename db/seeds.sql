@@ -6,10 +6,10 @@ INSERT INTO users (fullName, email, googleIdToken) VALUES ('Sara Johnson', 'sara
 INSERT INTO users (fullName, email, googleIdToken) VALUES ('Philip J Fry', 'pjfry@gmail.com', 'ev9ejgAdkdjdjf0');
 INSERT INTO users (fullName, email, googleIdToken) VALUES ('Tonya Crabapple', 'tonya@gmail.com', 'ev9ejgAdkdjdjf0');
 
-INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob, userId) VALUES ('Plaza Park Clean UP', '200 3rd Ave North, Minneapolis, MN 55423', '<googlelocation>', 'This is a short description', '2019-1-23 23:59:59', true, 3);
-INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob, userId) VALUES ('Road Side UP', '5500 Fremont Ave S, Minneapolis, MN 55423', '<googlelocation>', 'This is a short description', '2019-8-11 23:59:59', true, 3);
-INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob, userId) VALUES ('Get the trash outta here', '7600 Oliver Ave S, Richfield, MN 55423', '<googlelocation>', 'This is a short description', '2019-8-23 23:59:59', true, 5);
-INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob, userId) VALUES ('Clean Up America!', '5600 South 14th Street, Minneapolis, MN 55423', '<googlelocation>', 'This is a short description', '2019-10-23 23:59:59', true, 4);
+INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob) VALUES ('Plaza Park Clean UP', '200 3rd Ave North, Minneapolis, MN 55423', '<googlelocation>', 'This is a short description', '2019-1-23 23:59:59', true);
+INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob) VALUES ('Road Side UP', '5500 Fremont Ave S, Minneapolis, MN 55423', '<googlelocation>', 'This is a short description', '2019-8-11 23:59:59', true);
+INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob) VALUES ('Get the trash outta here', '7600 Oliver Ave S, Richfield, MN 55423', '<googlelocation>', 'This is a short description', '2019-8-23 23:59:59', true);
+INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eventDateTime, byob) VALUES ('Clean Up America!', '5600 South 14th Street, Minneapolis, MN 55423', '<googlelocation>', 'This is a short description', '2019-10-23 23:59:59', true);
 
 
 INSERT INTO usersEvents (userId, eventId) VALUES (3, 1);
