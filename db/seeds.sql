@@ -14,12 +14,12 @@ INSERT INTO events (eventTitle, eventLocation, googleGeoLocation, eventDesc, eve
 
 INSERT INTO usersEvents (userId, eventId) VALUES (3, 1);
 INSERT INTO usersEvents (userId, eventId) VALUES (3, 2);
-INSERT INTO usersEvents (userId, eventId) VALUES (3, 3);
+INSERT INTO usersEvents (userId, eventId, organizer) VALUES (3, 3, true);
 INSERT INTO usersEvents (userId, eventId) VALUES (3, 4);
 INSERT INTO usersEvents (userId, eventId) VALUES (2, 1);
 INSERT INTO usersEvents (userId, eventId) VALUES (2, 2);
 INSERT INTO usersEvents (userId, eventId) VALUES (3, 1);
-INSERT INTO usersEvents (userId, eventId) VALUES (6, 1);
+INSERT INTO usersEvents (userId, eventId, organizer) VALUES (6, 1, true);
 INSERT INTO usersEvents (userId, eventId) VALUES (4, 3);
 
 
