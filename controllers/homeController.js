@@ -21,7 +21,7 @@ passport.use(new GoogleStrategy({
 		callbackURL: "https://trashtaggers.herokuapp.com/auth/google/join"
 	},
   function(accessToken, refreshToken, profile, done) {
-		console.log('profile', profile);
+		console.log('profile', profile.displayName, profile.emails);
 		// User.findOrCreate({ googleId: profile.id }, function (err, user) {
 		// 	return done(err, user);
 		// });
