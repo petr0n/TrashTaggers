@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy({
 				email: profile.emails[0].value
 			}
 		}).then(function(err, user) {
-			console.log('findorCreate user: ', user);
+			console.log('findorCreate err: ', err);
 			return done(err, user);
 		});
 	}
