@@ -23,9 +23,14 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
 		console.log('profile', profile.displayName, profile.emails[0].value);
 		db.User.findOrCreate({ 
-			googleIdToken: profile.id,
-			fullName: profile.displayName,
-			email: profile.emails[0].value
+			where:{
+        email: profile.emails[0].value
+			}, 
+			defaults: {
+				googleIdToken: profile.id,
+				fullName: profile.displayName,
+				email: profile.emails[0].value
+			}
 		}, function (err, user) {
 			return done(err, user);
 		});
