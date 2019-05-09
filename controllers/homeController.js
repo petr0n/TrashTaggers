@@ -18,7 +18,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new GoogleStrategy({
 		clientID: "234723525029-c4timr4uknpgqe25c7m3votrsdq7ikau.apps.googleusercontent.com",
 		clientSecret: "sF7P_qX_Z-MeyFcv4i3PZoIR",
-		callbackURL: "https://trashbaggers.herokuapp.com/auth/google/callback"
+		callbackURL: "https://trashtaggers.herokuapp.com/auth/google/join"
 	},
   function(accessToken, refreshToken, profile, done) {
 		User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -42,7 +42,7 @@ router.get('/auth/google',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-router.get('/auth/google/callback', 
+router.get('/auth/google/join', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
