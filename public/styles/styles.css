@@ -1,3 +1,57 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+.bigContainer {
+  background-image: url("../images/background.jpg");
+}
+
+.jumbotron {
+  background-image: url("../images/trash_background.jpg");
+  background-size: 35%;
+  background-repeat: no-repeat;
+  background-color:#a7cdf2;
+}
+
+#tagTrashButton {
+  border: 2px solid gray;
+  box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: box-shadow 1s;
+}
+
+#tagTrashButton:hover{
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 1s; 
+}
+
+#howManyButton {
+  border: 1px solid gray;
+  box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: box-shadow 1s;
+}
+
+#howManyButton:hover{
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 1s; 
+}
+
+#buttonGroup {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+#selectButton {
+  border: 1px solid transparent;
+  box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: box-shadow 1s;
+}
+
+#selectButton:hover{
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 1s; 
+}
+
