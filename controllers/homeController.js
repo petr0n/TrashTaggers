@@ -36,7 +36,13 @@ passport.use(new GoogleStrategy({
 //   the user to google.com.  After authorization, Google will redirect the user
 //   back to this application at /auth/google/callback
 router.get('/auth/google',
-	passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+	passport.authenticate('google', { 
+		scope: [
+			'https://www.googleapis.com/auth/userinfo.profile',
+			'https://www.googleapis.com/auth/userinfo.email'
+		] 
+	})
+);
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
