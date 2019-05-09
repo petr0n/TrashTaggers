@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT
     },
     eventDateTime: {
-      type: DataTypes.DATETIME
+      type: DataTypes.DATE
     },
     byob: {
       type: DataTypes.BOOLEAN

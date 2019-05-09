@@ -33,6 +33,9 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
+db.User.belongsToMany(db.Event, { through: db.UsersEvents, foreignKey: 'userId' });
+db.Event.belongsToMany(db.User, { through: db.UsersEvents, foreignKey: 'eventId' });
+
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {

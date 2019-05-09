@@ -1,20 +1,18 @@
 module.exports = function (sequelize, DataTypes) {
 	let UsersEvents = sequelize.define("UsersEvents", {
 		userId: {
-			type: Sequelize.INTEGER
+			type: DataTypes.INTEGER
 		},
 		eventId: {
-			type: Sequelize.INTEGER
+			type: DataTypes.INTEGER
 		},
 		organizer: {
-			type: Sequelize.BOOLEAN,
+			type: DataTypes.BOOLEAN,
 			default: false
 		}
 	});
 	return UsersEvents;
 }
 
-User.belongsToMany(Event, { through: UsersEvents });
-Event.belongsToMany(User, { through: UsersEvents });
 
 // user.addProject(project, { through: { role: 'manager' }});
