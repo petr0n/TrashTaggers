@@ -64,3 +64,5 @@ typings/
 *.code-workspace
 
 .DS_Store
+
+__*.js

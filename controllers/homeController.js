@@ -5,6 +5,15 @@ const Op = Sequelize.Op //should this be in the index.js file?
 
 let db = require("../models/");
 
+router.get('/', function(req, res) {
+    db.Events.findAll({
+        limit: 5,
+        order: ['eventDateTime', 'DESC']
+    }).then(function(results){
+        res.json(results); //TODO return html instead of json
+    });
+});
+
 //Get all events with an event date greater than or equal to today 
 router.get("/api/events", function (req, res) {
     db.Event.findAll({
@@ -92,5 +101,3 @@ router.post("/api/users", function (req, res) {
     }).then(function (dbUser) {
         res.json(dbUser);
     });
-
-});

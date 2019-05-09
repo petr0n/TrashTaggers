@@ -13,7 +13,6 @@ CREATE TABLE events
     eventDesc TEXT NOT NULL,
     eventDateTime DATETIME NOT NULL,
     byob BOOLEAN DEFAULT NULL,
-    userId INT NOT NULL, 
     createAt DATETIME DEFAULT now(),
     modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
@@ -35,5 +34,6 @@ CREATE TABLE usersEvents
     id int NOT NULL AUTO_INCREMENT,
     userId INT NOT NULL,
     eventId INT NOT NULL,
+    organizer BOOLEAN DEFAULT false,
     PRIMARY KEY (id)
 );
