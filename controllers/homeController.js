@@ -22,13 +22,13 @@ passport.use(new GoogleStrategy({
 	},
   function(accessToken, refreshToken, profile, done) {
 		console.log('profile', profile.displayName, profile.emails[0].value);
-		// db.User.findOrCreate({ 
-		// 	googleIdToken: profile.id,
-		// 	fullName: profile.displayName,
-		// 	email: profile.emails[0].value
-		// }, function (err, user) {
-		// 	return done(err, user);
-		// });
+		db.User.findOrCreate({ 
+			googleIdToken: profile.id,
+			fullName: profile.displayName,
+			email: profile.emails[0].value
+		}, function (err, user) {
+			return done(err, user);
+		});
 	}
 ));
 
@@ -56,7 +56,7 @@ router.get('/auth/google',
 router.get('/auth/google/join', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
+    return res.render("index", {data: results, user: user});
   });
 
 router.get('/', function (req, res) {
