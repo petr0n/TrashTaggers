@@ -31,8 +31,8 @@ passport.use(new GoogleStrategy({
 				fullName: profile.displayName,
 				email: profile.emails[0].value
 			}
-		}).then(function(err) {
-			console.log('findorCreate err: ', err);
+		}).then(function(user) {
+			console.log('findorCreate user: ', user);
 			return done(user);
 		});
 	}
