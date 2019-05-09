@@ -13,6 +13,3 @@ module.exports = function (sequelize, DataTypes) {
 	});
 	return UsersEvents;
 }
-
-
-// user.addProject(project, { through: { role: 'manager' }});
