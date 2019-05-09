@@ -31,7 +31,7 @@ passport.use(new GoogleStrategy({
 				fullName: profile.displayName,
 				email: profile.emails[0].value
 			}
-		}, function (err, user) {
+		}).then(function (err, user) {
 			return done(err, user);
 		});
 	}
