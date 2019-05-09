@@ -2,9 +2,13 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "node": true
+        "node": true,
+        "es6": true
     },
-    "extends": "prettier",
+    "extends": [ 
+        "prettier", 
+        "standard"
+    ],
     "plugins": [
         "prettier"
       ],
@@ -22,6 +26,7 @@
         "no-multi-spaces": "error",
         "no-unused-vars": "error",
         "camelcase": "error",
+        "no-var": "error",
         "indent": [
             "error",
             2

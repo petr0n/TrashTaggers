@@ -13,8 +13,8 @@ CREATE TABLE events
     eventDesc TEXT NOT NULL,
     eventDateTime DATETIME NOT NULL,
     byob BOOLEAN DEFAULT NULL,
-    createAt DATETIME DEFAULT now(),
-    modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    createdAt DATETIME DEFAULT now(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
 
@@ -24,8 +24,8 @@ CREATE TABLE users
     fullName varchar(255) NOT NULL,
 	email varchar(255) NOT NULL,
     googleIdToken varchar(255) NOT NULL, 
-    createAt DATETIME DEFAULT now(),
-    modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    createdAt DATETIME DEFAULT now(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );
 

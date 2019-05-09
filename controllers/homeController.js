@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const Sequelize = require("sequelize");
 
 const Op = Sequelize.Op //should this be in the index.js file?
 
 let db = require("../models/");
 
 router.get('/', function (req, res) {
-	db.Events.findAll({
+	db.Event.findAll({
 		limit: 5,
-		order: ['eventDateTime', 'DESC']
+		order: ['eventDateTime']
 	}).then(function (results) {
-		res.json(results); //TODO return html instead of json
+		// res.json(results); //TODO return html instead of json
+		return res.render("index", {data: results});
 	});
 });
 
@@ -22,10 +24,10 @@ router.get("events", function (req, res) {
 				[Op.gte]: new Date() // or maybe moment().toDate(); 
 			}
 		},
-		order: [eventDateTime, 'ASC']
+		order: ['eventDateTime', 'ASC']
 	}).then(function (dbEvent) {
 		res.json(dbEvent);
-	});
+	}); 
 });
 
 //Get first n events with an event date greater than or equal to today 
@@ -36,7 +38,7 @@ router.get("/api/events/:limit", function (req, res) {
 				[Op.gte]: new Date() // or maybe moment().toDate(); 
 			}
 		},
-		order: [eventDateTime, 'ASC'],
+		order: ['eventDateTime', 'ASC'],
 		limit: req.param.limit
 	}).then(function (dbEvent) {
 		res.json(dbEvent);
@@ -102,3 +104,6 @@ router.post("/api/users", function (req, res) {
 	}).then(function (dbUser) {
 		res.json(dbUser);
 	});
+});
+
+module.exports = router;
