@@ -31,12 +31,16 @@ passport.use(new GoogleStrategy({
 				fullName: profile.displayName,
 				email: profile.emails[0].value
 			}
-		}).then(function(err, user) {
+		}).then(function(err) {
 			console.log('findorCreate err: ', err);
-			return done(err, user);
+			return done(user);
 		});
 	}
 ));
+
+function done(user){
+	return user.fullName;
+}
 
 
 
