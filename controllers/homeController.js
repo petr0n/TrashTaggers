@@ -6,6 +6,50 @@ const Op = Sequelize.Op //should this be in the index.js file?
 
 let db = require("../models/");
 
+
+
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+
+// Use the GoogleStrategy within Passport.
+//   Strategies in passport require a `verify` function, which accept
+//   credentials (in this case, a token, tokenSecret, and Google profile), and
+//   invoke a callback with a user object.
+passport.use(new GoogleStrategy({
+    consumerKey: "234723525029-c4timr4uknpgqe25c7m3votrsdq7ikau.apps.googleusercontent.com",
+    consumerSecret: "sF7P_qX_Z-MeyFcv4i3PZoIR",
+    callbackURL: "http://localhost:3000/auth/google/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        return done(err, user);
+      });
+  }
+));
+
+
+
+// GET /auth/google
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  The first step in Google authentication will involve redirecting
+//   the user to google.com.  After authorization, Google will redirect the user
+//   back to this application at /auth/google/callback
+router.get('/auth/google',
+  passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' }));
+
+// GET /auth/google/callback
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+	});
+	
+
+
 router.get('/', function (req, res) {
 	db.Event.findAll({
 		limit: 5,

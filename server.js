@@ -20,7 +20,7 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
-  
+
 let routes = require('./controllers/homeController.js');
 app.use(routes);
 
@@ -40,6 +40,8 @@ db.Event.belongsToMany(db.User, {
   through: db.UsersEvents,
   foreignKey: "eventId"
 });
+
+
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
