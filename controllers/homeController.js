@@ -18,7 +18,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new GoogleStrategy({
 		clientID: "234723525029-c4timr4uknpgqe25c7m3votrsdq7ikau.apps.googleusercontent.com",
 		clientSecret: "sF7P_qX_Z-MeyFcv4i3PZoIR",
-		callbackURL: "https://trashbaggers.heroku.com/auth/google/callback"
+		callbackURL: "https://trashbaggers.herokuapp.com/auth/google/callback"
 	},
   function(accessToken, refreshToken, profile, done) {
 		User.findOrCreate({ googleId: profile.id }, function (err, user) {
