@@ -52,7 +52,7 @@ router.get('/auth/google',
 router.get('/auth/google/join', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    return res.render("index", {data: results, user: user});
+    res.redirect('/');
 });
 
 
