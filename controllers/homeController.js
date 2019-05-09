@@ -23,7 +23,7 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
 		console.log('profile', profile.displayName, profile.emails[0].value);
 		db.User.findOrCreate({ 
-			where:{
+			where: {
         email: profile.emails[0].value
 			}, 
 			defaults: {
@@ -31,8 +31,8 @@ passport.use(new GoogleStrategy({
 				fullName: profile.displayName,
 				email: profile.emails[0].value
 			}
-		}).then(function (err, user) {
-			return done(err, user);
+		}).then(function(user) {
+			return done(user);
 		});
 	}
 ));
@@ -40,10 +40,6 @@ passport.use(new GoogleStrategy({
 
 
 // GET /auth/google
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  The first step in Google authentication will involve redirecting
-//   the user to google.com.  After authorization, Google will redirect the user
-//   back to this application at /auth/google/callback
 router.get('/auth/google',
 	passport.authenticate('google', { 
 		scope: [
@@ -53,16 +49,13 @@ router.get('/auth/google',
 	})
 );
 
-// GET /auth/google/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
 router.get('/auth/google/join', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     return res.render("index", {data: results, user: user});
-  });
+});
+
+
 
 router.get('/', function (req, res) {
 	db.Event.findAll({
