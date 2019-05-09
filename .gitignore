@@ -60,4 +60,9 @@ typings/
 # next.js build output
 .next
 
+
+*.code-workspace
+
 .DS_Store
+
+__*.js
