@@ -32,6 +32,7 @@ passport.use(new GoogleStrategy({
 				email: profile.emails[0].value
 			}
 		}).then(function(user) {
+			console.log('findorCreate user: ', user)
 			return done(user);
 		});
 	}
@@ -54,7 +55,6 @@ router.get('/auth/google/join',
   function(req, res) {
     res.redirect('/');
 });
-
 
 
 router.get('/', function (req, res) {
