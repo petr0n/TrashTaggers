@@ -24,7 +24,7 @@ router.get("/events", function(req, res) {
             [Op.gte]: new Date() // or maybe moment().toDate();
         }
     },
-    order: [eventDateTime, 'ASC']
+    order: [['eventDateTime','ASC']]
   }).then(function(dbEvent) {
     res.json(dbEvent);
   });
@@ -33,19 +33,19 @@ router.get("/events", function(req, res) {
 //Get first n events with an event date greater than or equal to today
 //repurpose to index handlebar
 //change to just 5
-// router.get("/api/events/:limit", function (req, res) {
-//     db.Event.findAll({
-//         where: {
-//             eventDateTime: {
-//                 [Op.gte]: new Date() // or maybe moment().toDate();
-//             }
-//         },
-//         order: [eventDateTime, 'ASC'],
-//         limit: req.param.limit
-//     }).then(function (dbEvent) {
-//         res.json(dbEvent);
-//     });
-// });
+router.get("/api/events/:limit", function (req, res) {
+    db.Event.findAll({
+        where: {
+            eventDateTime: {
+                [Op.gte]: new Date() // or maybe moment().toDate();
+            }
+        },
+        order: [['eventDateTime', 'ASC']]
+        limit: req.param.limit
+    }).then(function (dbEvent) {
+        res.json(dbEvent);
+    });
+});
 
 //Get event by id and include the organizer and helpers
 //events/id
