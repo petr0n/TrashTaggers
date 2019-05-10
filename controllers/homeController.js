@@ -22,20 +22,17 @@ passport.use(new GoogleStrategy({
 	},
   function(accessToken, refreshToken, profile, done) {
 		console.log('profile', profile.displayName, profile.emails[0].value);
-		db.User.findOrCreate({ 
-			where: {
-        email: profile.emails[0].value
-			}, 
-			defaults: {
-				googleIdToken: profile.id,
-				fullName: profile.displayName,
-				email: profile.emails[0].value
-			}
-		},
-		function(err, user) {
-			// console.log('findorCreate user: ', user);
-			return done(user.fullName);
-		});
+		let selector = { where: { email: profile.emails[0].value } };
+		let values = {
+			googleIdToken: profile.id,
+			fullName: profile.displayName,
+			email: profile.emails[0].value
+		};
+		db.User.findOrCreate(selector, values)
+			.done(function(err, user) {
+				// console.log('findorCreate user: ', user);
+				return done(user.fullName);
+			});
 	}
 ));
 
