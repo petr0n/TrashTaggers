@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Event = sequelize.define("Event", {
+  let Event = sequelize.define("Event", {
     eventTitle: {
       type: DataTypes.STRING
     },
@@ -14,9 +14,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     byob: {
       type: DataTypes.BOOLEAN
-    },
-    userId: {
-      type: DataTypes.INTEGER
     }
   });
 
