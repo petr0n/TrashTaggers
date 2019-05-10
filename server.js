@@ -25,6 +25,10 @@ app.use(express.static("public"));
 // require("./routes/apiRoutes")(app);
 // require("./routes/htmlRoutes")(app);
 
+// Import routes and give the server access to them.
+var routes = require("./controllers/homeController.js");
+app.use(routes);
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true

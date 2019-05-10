@@ -14,9 +14,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     byob: {
       type: DataTypes.BOOLEAN
-    },
-    userId: {
-      type: DataTypes.INTEGER
     }
   });
 
