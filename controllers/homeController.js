@@ -31,16 +31,13 @@ passport.use(new GoogleStrategy({
 				fullName: profile.displayName,
 				email: profile.emails[0].value
 			}
-		}).then(function(user) {
-			console.log('findorCreate user: ', user);
-			return done(user);
+		},
+		function(err, user) {
+			// console.log('findorCreate user: ', user);
+			return done(user.fullName);
 		});
 	}
 ));
-
-function done(user){
-	return user.fullName;
-}
 
 
 
