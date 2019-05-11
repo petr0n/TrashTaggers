@@ -38,19 +38,27 @@ $(function () {
     }) // ==> end add an event
     
     // join an event
-    $(".eventRowId").on("click", function(event) {
+    $(".joinBtn").on("click", function(event) {
         event.preventDefault();
-        var theEvent = $(this).data("id");
-        var isName = $("#fullName").val().trim();
-        var isEmail = $("#email").val().trim();
+        $("#joinModal").modal();
+    });
+    $(".joinFormBtn").on("click", function(event) {
+        event.preventDefault();
+        let errorMessage;
+        if($("#fullName").val().trim() === '') {
+            errorMessage = 'Name required';
+        }
+        if($("#email").val().trim() === '') {
+            errorMessage = 'Email required';
+        }
 
-        var willJoin = {
-            eventId: theEvent,
-            fullName: isName,
-            email: isEmail
+        let willJoin = {
+            eventId: $(this).data("id"),
+            fullName: $("#fullName").val().trim(),
+            email: $("#email").val().trim()
         };
 
-        $.ajax("/api/join" + theEvent, {
+        $.ajax("/api/join" + eventId, {
             type: "POST",
             data: willJoin
         }).then(
@@ -60,4 +68,7 @@ $(function () {
             }
         );
     });// ==> end join an event
+
+
+    
 }) // ==> end CODE
