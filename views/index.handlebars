@@ -1,22 +1,71 @@
 <div id="home">
   <div class="container">
+    <div class="jumbotron jumbotron-fluid" style="text-align:center;">
+        <div class="container">
+          <h1 class="display-4" style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">TrashTaggers!</h1>
+        </div>
+    </div>
+
+    <hr>
+
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <a href="/">Home</a><br>
-        <a href="/auth/google">Login with Google</a><br>
-        <a href="/createEvent">Create Event</a><br>
-        {{#if events}}
+      <div class="col-6">
+        <h3><strong>Login &amp; Tell Us What You Want to Do!</strong></h3>
+        <a class="btn btn-primary" href="/" role="button">Home</a>
+        <a class="btn btn-primary" href="/auth/google" role="button">Login with Google</a>
+        <a class="btn btn-primary" href="/createEvent" role="button">Create Event</a>
+
+        <hr>
+
+        <h3><strong>Current Events</strong></h3>
+       
+        <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Event Name</th>
+      <th scope="col">Location</th>
+      <th scope="col">Date</th>
+      <th scope="col">Join</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if events}}
           {{#each events}}
-            <p>{{eventTitle}}</p>
-          {{/each}}
+    <tr>
+      <td>{{eventTitle}}</td>
+      <td>{{eventLocation}}</td>
+      <td>{{eventDateTime}}</td>
+      <td><a class="btn btn-primary" data-id="{{id}}" href="#" role="button">Join</a></td>
+    </tr>
+     {{/each}}
         {{/if}}
+  </tbody>
+</table>
+
+         
 
       </div>
+
+      <div class="col-6">
+        <div id="map"></div>
+      <script>
+  function initMap() {
+    var uluru = {lat: 44.983, lng: -93.184};
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 7, center: uluru});
+    var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+      </script>
+
+      </div>
+
     </div>
   </div>
 </div>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTcz-O5jhNzvfOOZD2cHm_T7fjs6gvFc0&callback=initMap">
+</script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

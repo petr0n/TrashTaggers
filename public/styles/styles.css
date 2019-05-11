@@ -55,3 +55,17 @@
   transition: box-shadow 1s; 
 }
 
+.btn {
+  background-color: #a7cdf2;
+  color: black;
+  border: 1px solid #a7cdf2;
+  box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: box-shadow 1s;
+}
+
+.btn:hover {
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 1s; 
+}
+
