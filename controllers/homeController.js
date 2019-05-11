@@ -9,7 +9,6 @@ const Op = Sequelize.Op //should this be in the index.js file?
 let db = require("../models/");
 
 
-
 // GET /auth/google
 router.get('/auth/google',
 	passport.authenticate('google', { 
@@ -21,10 +20,23 @@ router.get('/auth/google',
 ); 
 
 router.get('/auth/google/join', 
-  passport.authenticate('google', { failureRedirect: '/' }),
-  function(req, res) {
-    res.redirect('/');
-});
+  passport.authenticate('google', { 
+		successRedirect : '/?success=1',
+		failureRedirect: '/error' 
+	})
+);
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+	console.log('req', req.isAuthenticated());
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+			return next();
+
+	// if they aren't redirect them to the home page
+	res.redirect('/');
+}
+
 
 
 router.get('/', function (req, res) {
@@ -36,6 +48,15 @@ router.get('/', function (req, res) {
 		return res.render("index", {data: results});
 	});
 });
+
+
+
+//Get all events with an event date greater than or equal to today 
+router.get("/createEvent", isLoggedIn, function (req, res) {
+	let data = {x: "f"};
+	return res.render("create-event", {data: data});
+});
+
 
 //Get all events with an event date greater than or equal to today 
 router.get("events", function (req, res) {

@@ -13,7 +13,8 @@ module.exports = (passport) => {
 	passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENTID,
 		clientSecret: process.env.GOOGLE_CLIENTSECRET,
-		callbackURL: "https://trashtaggers.herokuapp.com/auth/google/join"
+		// callbackURL: "https://trashtaggers.herokuapp.com/auth/google/join"
+		callbackURL: process.env.GOOGLE_CALLBACKURL
 	},
 		function (accessToken, refreshToken, profile, done) {
 			// console.log('profile', profile.displayName, profile.emails[0].value);
@@ -27,13 +28,10 @@ module.exports = (passport) => {
 					email: profile.emails[0].value
 				}
 			}).then(function (user) {
-				// console.log('findorCreate user: ', user);
-				return done(user);
-			});
+				console.log('findorCreate user: ', user);
+				done(null, user);
+			}).catch(done);
 		}
 	));
 
-	function done(user) {
-		console.log('user.fullName', user.fullName);
-	}
 }
