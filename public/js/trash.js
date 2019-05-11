@@ -44,17 +44,21 @@ $(function () {
     });
     $(".joinFormBtn").on("click", function(event) {
         event.preventDefault();
-        var eventId = $(this).data("id");
-        var fullName = $("#fullName").val().trim();
-        var email = $("#email").val().trim();
+        let errorMessage;
+        if($("#fullName").val().trim() === '') {
+            errorMessage = 'Name required';
+        }
+        if($("#email").val().trim() === '') {
+            errorMessage = 'Email required';
+        }
 
-        var willJoin = {
-            eventId: theEvent,
-            fullName: isName,
-            email: isEmail
+        let willJoin = {
+            eventId: $(this).data("id"),
+            fullName: $("#fullName").val().trim(),
+            email: $("#email").val().trim()
         };
 
-        $.ajax("/api/join" + theEvent, {
+        $.ajax("/api/join" + eventId, {
             type: "POST",
             data: willJoin
         }).then(
