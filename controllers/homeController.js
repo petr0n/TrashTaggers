@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Sequelize = require("sequelize");
-
-const Op = Sequelize.Op //should this be in the index.js file?
 
 let db = require("../models/");
 
+const Op = db.Sequelize.Op //should this be in the index.js file?
 
 
 var passport = require('passport');
@@ -60,41 +58,33 @@ router.get('/auth/google/join',
 
 router.get('/', function (req, res) {
 	db.Event.findAll({
-		limit: 5,
-		order: ['eventDateTime']
+		where: {
+			eventDateTime: {
+				[Op.gte]: new Date() // or maybe moment().toDate(); 
+			}
+		},
+		order: [['eventDateTime', 'ASC']],
+		limit: 5
 	}).then(function (results) {
 		// res.json(results); //TODO return html instead of json
-		return res.render("index", {data: results});
+		return res.render("index", {events: results});
 	});
 });
 
 //Get all events with an event date greater than or equal to today 
-router.get("events", function (req, res) {
+router.get("/api/events", function (req, res) {
 	db.Event.findAll({
 		where: {
 			eventDateTime: {
 				[Op.gte]: new Date() // or maybe moment().toDate(); 
 			}
 		},
-		order: ['eventDateTime', 'ASC']
-	}).then(function (dbEvent) {
-		res.json(dbEvent);
+		order: [['eventDateTime', 'ASC']]
+	}).then(function (results) {
+		// res.json(dbEvent);
+		// console.log(res.json(dbEvent)); 
+		return res.render("events", {events: results});
 	}); 
-});
-
-//Get first n events with an event date greater than or equal to today 
-router.get("/api/events/:limit", function (req, res) {
-	db.Event.findAll({
-		where: {
-			eventDateTime: {
-				[Op.gte]: new Date() // or maybe moment().toDate(); 
-			}
-		},
-		order: ['eventDateTime', 'ASC'],
-		limit: req.param.limit
-	}).then(function (dbEvent) {
-		res.json(dbEvent);
-	});
 });
 
 //Get event by id and include the organizer and helpers
@@ -115,7 +105,7 @@ router.get('/api/events/:id', function (req, res) {
 });
 
 //Create Event and UsersEvents
-router.post("/api/events", function (req, res) {
+router.post("/api/add/events", function (req, res) {
 	console.log(req.body);
 	db.Event.create({
 		eventTitle: req.body.eventTitle,  //need the names from the form
@@ -126,7 +116,8 @@ router.post("/api/events", function (req, res) {
 	}).then(function (dbEvent) {
 		db.UsersEvents.create({
 			userId: req.param.userid,
-			eventId: dbEvent.event_id
+			eventId: dbEvent.event_id,
+			organizer: 'true'
 		}).then(function (dbUsersEvents) {
 			res.json(dbUsersEvents);
 		});
