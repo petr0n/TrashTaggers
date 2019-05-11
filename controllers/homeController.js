@@ -66,7 +66,7 @@ router.get("/addEvent",  function (req, res) {
 	let data = {x: "f"};
 	// console.log('createEvent res.user:', res.user);
 
-	return res.render("addEvent", {data: data});
+	return res.render("addevent", {data: data});
 });
 
 

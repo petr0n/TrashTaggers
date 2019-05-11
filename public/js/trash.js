@@ -5,7 +5,7 @@
 $(function () {
 
     // add an event
-    $(".form-group").on("submit", function (event) {
+    $("#addEvent").on("submit", function (event) {
         event.preventDefault();
 
         //get newEvent data for POST to db.events
