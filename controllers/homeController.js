@@ -1,44 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Sequelize = require("sequelize");
+const passport = require("passport");
+
 
 const Op = Sequelize.Op //should this be in the index.js file?
 
 let db = require("../models/");
-
-
-
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
-// Use the GoogleStrategy within Passport.
-//   Strategies in passport require a `verify` function, which accept
-//   credentials (in this case, a token, tokenSecret, and Google profile), and
-//   invoke a callback with a user object.
-passport.use(new GoogleStrategy({
-		clientID: "234723525029-c4timr4uknpgqe25c7m3votrsdq7ikau.apps.googleusercontent.com",
-		clientSecret: "sF7P_qX_Z-MeyFcv4i3PZoIR",
-		callbackURL: "https://trashtaggers.herokuapp.com/auth/google/join"
-	},
-  function(accessToken, refreshToken, profile, done) {
-		console.log('profile', profile.displayName, profile.emails[0].value);
-		db.User.findOrCreate({ 
-			where: {
-        email: profile.emails[0].value
-			}, 
-			defaults: {
-				googleIdToken: profile.id,
-				fullName: profile.displayName,
-				email: profile.emails[0].value
-			}
-		},
-		function(err, user) {
-			// console.log('findorCreate user: ', user);
-			return done(user.fullName);
-		});
-	}
-));
-
 
 
 // GET /auth/google
@@ -49,13 +17,35 @@ router.get('/auth/google',
 			'https://www.googleapis.com/auth/userinfo.email'
 		] 
 	})
-);
+); 
 
 router.get('/auth/google/join', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-});
+  passport.authenticate('google', { 
+		// successRedirect : '/?success=1',
+		failureRedirect: '/error',
+		session: true 
+	}),
+	(req, res) => {
+		console.log('wooo we authenticated, here is our user object:', req.user);
+		// res.json(req.user);
+		// req.session.fullName = req.user.fullName;
+		// req.session.email = req.user.email;
+		// console.log('callback', req.user);
+		res.redirect('/?loggedIn=true');
+	}
+);
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+	console.log('req', req.isAuthenticated());
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+			return next();
+
+	// if they aren't redirect them to the home page
+	res.redirect('/auth/google');
+}
+
 
 
 router.get('/', function (req, res) {
@@ -63,10 +53,22 @@ router.get('/', function (req, res) {
 		limit: 5,
 		order: ['eventDateTime']
 	}).then(function (results) {
-		// res.json(results); //TODO return html instead of json
-		return res.render("index", {data: results});
+		// res.json(res.user); //TODO return html instead of json
+		console.log('results', results);
+		return res.render("index", {events: results});
 	});
 });
+
+
+
+//Get all events with an event date greater than or equal to today 
+router.get("/createEvent",  function (req, res) {
+	let data = {x: "f"};
+	// console.log('createEvent res.user:', res.user);
+
+	return res.render("create-event", {data: data});
+});
+
 
 //Get all events with an event date greater than or equal to today 
 router.get("events", function (req, res) {

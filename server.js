@@ -1,16 +1,40 @@
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
+const express = require("express");
+const exphbs = require("express-handlebars");
+const passport = require("passport");
+const auth = require('./auth')
+const db = require("./models");
 
-var db = require("./models");
+// const Sequelize = require("sequelize");
+// const session = require("express-session");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+
+// auth
+auth(passport);
+app.use(passport.initialize());
+
+
+// Configure the session and session storage.
+const sessionConfig = {
+  resave: false,
+  saveUninitialized: false,
+  secret: "d3fu0djqefnoasidjfJPFH#9342",
+  //cookie: { maxAge: 60000 }
+  // store: new SequelizeStore({
+  //   db: sequelize,
+  //   table: 'Session'
+  // }),
+};
+
+app.use(passport.session(sessionConfig));
+
 
 // Handlebars
 app.engine(
