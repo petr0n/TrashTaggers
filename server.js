@@ -5,9 +5,8 @@ const passport = require("passport");
 const auth = require('./auth')
 const db = require("./models");
 
-const Sequelize = require("sequelize");
-const session = require("express-session");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+// const Sequelize = require("sequelize");
+// const session = require("express-session");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,14 +20,6 @@ app.use(express.static("public"));
 auth(passport);
 app.use(passport.initialize());
 
-let sequelize = new Sequelize({
-  "username": "root",
-  "password": "o7kLUrUb18gdzQzu",
-  "database": "trashTaggerDb",
-  "host": "localhost",
-  "port": 8889,
-  "dialect": "mysql"
-});
 
 // Configure the session and session storage.
 const sessionConfig = {
@@ -43,7 +34,6 @@ const sessionConfig = {
 };
 
 app.use(passport.session(sessionConfig));
-// app.use(require('./setUserSession.js'));
 
 
 // Handlebars
