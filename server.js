@@ -5,8 +5,8 @@ const passport = require("passport");
 const auth = require('./auth')
 const db = require("./models");
 
-// const Sequelize = require("sequelize");
-// const session = require("express-session");
+const Sequelize = require("sequelize");
+const session = require("express-session");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,11 +26,10 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   secret: "d3fu0djqefnoasidjfJPFH#9342",
-  //cookie: { maxAge: 60000 }
-  // store: new SequelizeStore({
-  //   db: sequelize,
-  //   table: 'Session'
-  // }),
+  store: new SequelizeStore({
+    db: sequelize,
+    table: 'Session'
+  }),
 };
 
 app.use(passport.session(sessionConfig));
@@ -56,14 +55,6 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-db.User.belongsToMany(db.Event, {
-  through: db.UsersEvents,
-  foreignKey: "userId"
-});
-db.Event.belongsToMany(db.User, {
-  through: db.UsersEvents,
-  foreignKey: "eventId"
-});
 
 
 
