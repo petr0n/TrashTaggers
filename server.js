@@ -1,11 +1,16 @@
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
+const express = require("express");
+const exphbs = require("express-handlebars");
+const passport = require("passport");
+const auth = require('./auth')
+const db = require("./models");
 
-var db = require("./models");
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+// auth
+auth(passport);
+app.use(passport.initialize());
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));

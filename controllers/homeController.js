@@ -1,46 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Sequelize = require("sequelize");
+const passport = require("passport");
+
 
 const Op = Sequelize.Op //should this be in the index.js file?
 
 let db = require("../models/");
 
-
-
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
-// Use the GoogleStrategy within Passport.
-//   Strategies in passport require a `verify` function, which accept
-//   credentials (in this case, a token, tokenSecret, and Google profile), and
-//   invoke a callback with a user object.
-passport.use(new GoogleStrategy({
-		clientID: "234723525029-c4timr4uknpgqe25c7m3votrsdq7ikau.apps.googleusercontent.com",
-		clientSecret: "sF7P_qX_Z-MeyFcv4i3PZoIR",
-		callbackURL: "https://trashtaggers.herokuapp.com/auth/google/join"
-	},
-  function(accessToken, refreshToken, profile, done) {
-		// console.log('profile', profile.displayName, profile.emails[0].value);
-		db.User.findOrCreate({ 
-			where: {
-        googleIdToken: profile.id
-			}, 
-			defaults: {
-				googleIdToken: profile.id,
-				fullName: profile.displayName,
-				email: profile.emails[0].value
-			}
-		}).then(function(user) {
-			// console.log('findorCreate user: ', user);
-			return done(user);
-		});
-	}
-));
-
-function done(user){
-	console.log('user.fullName', user.fullName);
-}
 
 
 // GET /auth/google
