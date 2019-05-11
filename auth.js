@@ -2,12 +2,14 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 let db = require("./models/");
 require("dotenv").config();
 
+
 module.exports = (passport) => {
 	passport.serializeUser((user, done) => {
-			done(null, user);
+		// console.log(user);
+		done(null, user);
 	});
-	passport.deserializeUser((user, done) => {
-			done(null, user);
+	passport.deserializeUser((userDataFromCookie, done) => {
+		done(null, userDataFromCookie);
 	});
 
 	passport.use(new GoogleStrategy({
@@ -28,7 +30,7 @@ module.exports = (passport) => {
 					email: profile.emails[0].value
 				}
 			}).then(function (user) {
-				console.log('findorCreate user: ', user);
+				// console.log('findorCreate user: ', user);
 				done(null, user);
 			}).catch(done);
 		}

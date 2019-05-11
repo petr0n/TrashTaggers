@@ -21,9 +21,19 @@ router.get('/auth/google',
 
 router.get('/auth/google/join', 
   passport.authenticate('google', { 
-		successRedirect : '/?success=1',
-		failureRedirect: '/error' 
-	})
+		// successRedirect : '/?success=1',
+		failureRedirect: '/error',
+		session: true 
+	}),
+	(req, res) => {
+		console.log('wooo we authenticated, here is our user object:', req.user);
+		// res.json(req.user);
+		// req.session.fullName = req.user.fullName;
+		// req.session.email = req.user.email;
+		// console.log('callback', req.user);
+		res.redirect('/?loggedIn=true');
+
+	}
 );
 
 // route middleware to make sure a user is logged in
@@ -34,7 +44,7 @@ function isLoggedIn(req, res, next) {
 			return next();
 
 	// if they aren't redirect them to the home page
-	res.redirect('/');
+	res.redirect('/auth/google');
 }
 
 
@@ -44,16 +54,19 @@ router.get('/', function (req, res) {
 		limit: 5,
 		order: ['eventDateTime']
 	}).then(function (results) {
-		// res.json(results); //TODO return html instead of json
-		return res.render("index", {data: results});
+		// res.json(res.user); //TODO return html instead of json
+		// console.log('res.user', res.user);
+		return res.render("index", {data: results, user: req.user});
 	});
 });
 
 
 
 //Get all events with an event date greater than or equal to today 
-router.get("/createEvent", isLoggedIn, function (req, res) {
+router.get("/createEvent",  function (req, res) {
 	let data = {x: "f"};
+	// console.log('createEvent res.user:', res.user);
+
 	return res.render("create-event", {data: data});
 });
 
