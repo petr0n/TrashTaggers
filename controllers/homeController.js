@@ -15,7 +15,7 @@ router.get('/auth/google',
 			'https://www.googleapis.com/auth/userinfo.email'
 		] 
 	})
-); 
+);  
 
 router.get('/auth/google/join', 
   passport.authenticate('google', { 
