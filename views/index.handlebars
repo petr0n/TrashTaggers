@@ -28,6 +28,24 @@
     </div>
   </div>
 </div>
+ 
+     <div id="instafeed">
+    </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
+
+    <script>
+        var feed = new Instafeed({
+            get: "tagged",
+            tagName: "trashtag",
+            clientId: "6aea186d5f834a70ba0e70f79b24bdda",
+            accessToken: "4377410.1677ed0.b964788e83a542248ea67258437fd646",
+            success: function () {
+                console.log("success");
+            }
+        });
+        feed.run();
+    </script>
