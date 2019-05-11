@@ -54,7 +54,7 @@ router.get('/', function (req, res) {
 		order: ['eventDateTime']
 	}).then(function (results) {
 		// res.json(res.user); //TODO return html instead of json
-		console.log('results', results);
+		// console.log('results', results);
 		return res.render("index", {events: results});
 	});
 });
