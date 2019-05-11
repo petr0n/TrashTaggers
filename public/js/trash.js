@@ -1,86 +1,61 @@
-//==============REQUIREMENTS==============
-
-// 1. add an event
-// 2. create user
-// 3. join an event
 
 //==============CODE==============
 
 //attach handlers until DOM is loaded
 $(function () {
 
-    // 1. add an event
-    $(".formClass").on("submit", function (event) {
+    // add an event
+    $(".form-group").on("submit", function (event) {
         event.preventDefault();
 
         //get newEvent data for POST to db.events
         var newEvent = {
+            fullName: $("#fullName").val().trim(),
+            email: $("#email").val().trim(),
             eventTitle: $("#eventTitle").val().trim(),
+            eventDate: $("#eventDate").val().trim(),
+            eventTime: $("#eventTime").val().trim(),
             eventDesc: $("#eventDesc").val().trim(),
-            eventLocation: $("#manyFields").val().trim(), //1 db column, many form fields
-            eventDateTime: $("#eventTime").val().trim(),
-            byob: $("[name=byob]:checked").val().trim, //assumes a checkbox
-            //googleGeoLocation: on post should we get a lat/long?
+            addrOne: $("#addrOne").val().trim(),
+            addrTwo: $("#addrTwo").val().trim(),
+            city: $("#city").val().trim(),
+            state: $("#state").val().trim(),
+            zip: $("#zip").val().trim(),
+            byob: $("#byob").val().trim(),
         } // ==> end var newEvent
 
-        /*get usersEvents data for POST to db.usersEvents
-        var organizer {
-            userId: (this).data(googleIdToken),
-            eventId: created on insert
-            organizer: usersEvents.organizer true
-        } // ==> end var organizer */
-
         //send the POST request
-        $.ajax("/add/event", {
+        $.ajax("/api/add/event", {
             type: "POST",
             data: newEvent
 
         }).then(
             function () {
                console.log("New Event Created!");
-                location.reload(); //we may not want to reload the same page here
+                location.reload();
             }
         ); // ==> end POST request
-    }) // ==> end 1. add an event
+    }) // ==> end add an event
     
-    // 2. create user
-    $(".modalClass").on("submit", function(event) {
+    // join an event
+    $(".joinBtn").on("click", function(event) {
         event.preventDefault();
-
-        var newUser = {
-            fullName: $("#name").val().trim(),
-            email: $("email").val().trim(),
-            googleIdToken: wot
-        }
-        $.ajax("/users", {
-           type: "POST",
-            data: newUser
-        }).then (
-            function() {
-                console.log("New User Created");
-                location.reload(); //we don't want to reload the modal)
-            }
-        ); // ==> end POST route
-        
-    }) // ==> end 2. create user
-
-    // 3. join an event
-    //when the user clicks an event  to join...
-    $(".eventRowId").on("click", function(event) {
-        var theEvent = $(this).data("id");
-        var thisUserId = $(this).data(googleIdToken); //not sure!
-
-        //console.log(event);
-        //console.log("the event the user clicked is " + theEvent);
-        //console.log("the user is " + thisUserId);
+        $("#joinModal").modal();
+    });
+    $(".joinFormBtn").on("click", function(event) {
+        event.preventDefault();
+        var eventId = $(this).data("id");
+        var fullName = $("#fullName").val().trim();
+        var email = $("#email").val().trim();
 
         var willJoin = {
-            userId: thisUserId,
             eventId: theEvent,
+            fullName: isName,
+            email: isEmail
         };
 
-        $.ajax("/join/" + theEvent, {
-            type: "PUT", //join is a POST in homeController.js but aren't we just adding a user to an event?
+        $.ajax("/api/join" + theEvent, {
+            type: "POST",
             data: willJoin
         }).then(
             function() {
@@ -88,7 +63,8 @@ $(function () {
                 location.reload();
             }
         );
+    });// ==> end join an event
 
-    });// ==> end 3. join an event
 
+    
 }) // ==> end CODE
