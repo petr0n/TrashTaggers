@@ -32,7 +32,6 @@ router.get('/auth/google/join',
 		// req.session.email = req.user.email;
 		// console.log('callback', req.user);
 		res.redirect('/?loggedIn=true');
-
 	}
 );
 
@@ -55,8 +54,8 @@ router.get('/', function (req, res) {
 		order: ['eventDateTime']
 	}).then(function (results) {
 		// res.json(res.user); //TODO return html instead of json
-		// console.log('res.user', res.user);
-		return res.render("index", {data: results, user: req.user});
+		console.log('results', results);
+		return res.render("index", {events: results});
 	});
 });
 
