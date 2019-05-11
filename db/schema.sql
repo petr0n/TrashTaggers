@@ -35,5 +35,7 @@ CREATE TABLE usersEvents
     userId INT NOT NULL,
     eventId INT NOT NULL,
     organizer BOOLEAN DEFAULT false,
+    createdAt DATETIME DEFAULT now(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
