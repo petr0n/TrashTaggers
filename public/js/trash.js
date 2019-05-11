@@ -10,17 +10,17 @@ $(function () {
 
         //get newEvent data for POST to db.events
         var newEvent = {
+            eventTitle: $("#eventTitle").val().trim(),
             fullName: $("#fullName").val().trim(),
             email: $("#email").val().trim(),
-            eventTitle: $("#eventTitle").val().trim(),
-            eventDate: $("#eventDate").val().trim(),
-            eventTime: $("#eventTime").val().trim(),
-            eventDesc: $("#eventDesc").val().trim(),
             addrOne: $("#addrOne").val().trim(),
             addrTwo: $("#addrTwo").val().trim(),
             city: $("#city").val().trim(),
             state: $("#state").val().trim(),
             zip: $("#zip").val().trim(),
+            eventDate: $("#eventDateTime").val().trim(),
+            eventTime: $("#eventTime").val().trim(),
+            eventDesc: $("#eventDesc").val().trim(),
             byob: $("#byob").val().trim(),
         } // ==> end var newEvent
 
