@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
 		},
 		organizer: {
 			type: DataTypes.BOOLEAN,
-			default: false
+			defaultValue: false
 		}
 	});
 

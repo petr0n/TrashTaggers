@@ -122,11 +122,7 @@ router.post("/api/add/event", function (req, res) {
 			eventDateTime: req.body.eventDateTime,
 			byob: req.body.byob
 		}).then(function (dbEvent) {
-			console.log("#######");
-			console.log(dbUser.dataValues.id);
-			console.log(dbEvent);
-			console.log(dbEvent)
-			db.UsersEvents.create({
+				db.UsersEvents.create({
 				UserId: dbUser.dataValues.id,
 				eventId: dbEvent.dataValues.id,
 				organizer: true
