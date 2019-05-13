@@ -100,7 +100,8 @@ router.get('/event/:id', function (req, res) {
 			}]
 		}]
 	}).then(function (dbEvent) {
-		res.json(dbEvent);
+		console.log('dbEvent', dbEvent);
+		return res.render("viewevent", {event: dbEvent});
 	});
 });
 
