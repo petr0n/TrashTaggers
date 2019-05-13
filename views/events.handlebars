@@ -1,6 +1,43 @@
-<h3>Events:</h3>
-<ul>
-    {{#each events}}
-    <li>{{eventTitle}}</li>
-    {{/each}}
-</ul>
+<div id="events">
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid" style="text-align:center;">
+            <div class="container">
+                <h1 class="display-4"
+                    style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">
+                    TrashTaggers!</h1>
+            </div>
+        </div>
+
+        <hr>
+
+        <h3><strong>Our Full List of Events</strong></h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Event Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Bag Needed?</th>
+                    <th scope="col">Join</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if events}}
+                {{#each events}}
+                <tr>
+                    <td>{{eventTitle}}</td>
+                    <td>{{eventLocation}}</td>
+                    <td>{{eventDateTime}}</td>
+                    <td>{{eventDesc}}</td>
+                    <td>{{byob}}</td>
+                    <td><a class="btn btn-primary" data-id="{{id}}" href="#" role="button">Join</a></td>
+                </tr>
+                {{/each}}
+                {{/if}}
+            </tbody>
+        </table>
+
+    </div>
+</div>
