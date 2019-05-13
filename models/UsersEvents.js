@@ -3,9 +3,9 @@ module.exports = function (sequelize, DataTypes) {
 		// userId: {
 		// 	type: DataTypes.INTEGER
 		// },
-		// eventId: {
-		// 	type: DataTypes.INTEGER
-		// },
+		eventId: {
+			type: DataTypes.INTEGER
+		},
 		organizer: {
 			type: DataTypes.BOOLEAN,
 			default: false
@@ -13,7 +13,7 @@ module.exports = function (sequelize, DataTypes) {
 	});
 
 	UsersEvents.associate = function (models) {
-		UsersEvents.belongsTo(models.Event); 
+		UsersEvents.hasMany(models.Event); 
 		UsersEvents.belongsTo(models.User);
 	}
 
