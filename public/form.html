@@ -1,133 +1,104 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
-<meta charset="UTF-8">
-<title>Trash Taggers</title>
-<link rel="stylesheet" href="styles/reset.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="styles/styles.css">
-<style>
-    /* Set the size of the div element that contains the map */
-   #map {
-     height: 400px;  /* The height is 400 pixels */
-     width: 100%;  /* The width is the width of the web page */
-    }
- </style>
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Trash Taggers</title>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
 </head>
 
 <body>
 
-    <div class="container" id="bigContainer">          
+  <div class="container" id="bigContainer">
 
     <div class="jumbotron jumbotron-fluid" style="text-align:center;">
-        <div class="container">
-          <h1 class="display-4" style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">TrashTaggers!</h1>
-          <p class="lead" style="margin-left: 300px;"><strong>Your Trash is so Fat.. It Takes</strong> <button class="btn btn-outline-secondary dropdown-toggle" id="howManyButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0px, 5px, 0px, 5px; background-color: gray; color: white;">How Many  <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Select the # of people needed for your project!</a>
-            <a class="dropdown-item" href="#">1</a>
-            <a class="dropdown-item" href="#">2</a>
-            <a class="dropdown-item" href="#">3</a>
-            <a class="dropdown-item" href="#">4</a>
-            <a class="dropdown-item" href="#">5</a>
-            <a class="dropdown-item" href="#">6</a>
-            <a class="dropdown-item" href="#">7</a>
-            <a class="dropdown-item" href="#">8</a>
-            <a class="dropdown-item" href="#">9</a>
-            <a class="dropdown-item" href="#">10</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Need Even More?</a>
-          </div></button> <strong>People to Clean it Up?</strong></p>
-              <!--<div class="dropdown-menu" aria-labelledby="howManyButton">
-                <a class="dropdown-item" href="#">1</a>
-                <a class="dropdown-item" href="#">2</a>
-                <a class="dropdown-item" href="#">3</a>
-              </div>--->
-              
+      <div class="container">
+        <h1 class="display-4"
+          style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">
+          TrashTaggers!</h1>
+      </div>
+    </div> <!-- end jumbotron -->
 
+    <br>
+    <h3><strong>First we need some information about what you need to do: </strong></h3>
+    <br>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputEmail4">Name</label>
+          <input type="email" class="form-control" id="inputEmail4" placeholder="Name of Group">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputPassword4">Organizer</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Your Name">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputPassword4">Email</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="example@gmail.com">
         </div>
       </div>
-      <hr>
-      <h3><strong>First we need some information about what you need to do: </strong><button class="btn btn-outline-secondary dropdown-toggle" id="howManyButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 0px, 5px, 0px, 5px; background-color: gray; color: white;">Choose One: <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Form a Group</a>
-        <a class="dropdown-item" href="#">Request a Clean-Up</a>
-      </div></button></h3> 
-      <br>
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputEmail4">Name</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Name of Group">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputPassword4">Organizer</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Your Name">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputPassword4">Email</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="example@gmail.com">
-          </div>
-                </div>
-        <div class="form-group">
-          <label for="inputAddress">Address</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity">
         </div>
-        <div class="form-group">
-          <label for="inputAddress2">Address 2</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        <div class="form-group col-md-4">
+          <label for="inputState">State</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input type="text" class="form-control" id="inputZip">
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-2">
-              <label for="inputCity">Date of Event</label>
-              <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="form-group col-md-10">
-                <label for="inputCity">Description or Special Needs</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="inputCity">Date of Event</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-10">
+          <label for="inputCity">Description or Special Needs</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      
-<br><br>
-<hr>
+    </form>
 
-<div class="footer" id="buttonGroup" style="margin-top:10px;">
-<a href="form.html" style="margin-right: 2px;">Form a Group </a>  | 
-<a href="view.html" style="margin-right: 2px;"> Join a Group </a>  |
- <a href="form.html"> Request a Clean-Up</a>
-</div>
-<br><br>
+    <br><br>
+    <hr>
 
-
+    <div class="footer" id="buttonGroup" style="margin-top:10px;">
+      <a href="form.html" style="margin-right: 2px;">Form a Group </a> |
+      <a href="view.html" style="margin-right: 2px;"> Join a Group </a> |
+      <a href="form.html"> Request a Clean-Up</a>
+    </div>
+    <br><br>
 
 
+  </div> <!-- end Container-->
 
-
-
-</div>
-
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTcz-O5jhNzvfOOZD2cHm_T7fjs6gvFc0&callback=initMap">
-</script>
 
 </body>
 

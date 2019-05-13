@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Sequelize = require("sequelize");
 const passport = require("passport");
 
-
-const Op = Sequelize.Op //should this be in the index.js file?
-
 let db = require("../models/");
+
+const Op = db.Sequelize.Op //should this be in the index.js file?
 
 
 // GET /auth/google
@@ -17,7 +15,7 @@ router.get('/auth/google',
 			'https://www.googleapis.com/auth/userinfo.email'
 		] 
 	})
-); 
+);  
 
 router.get('/auth/google/join', 
   passport.authenticate('google', { 
@@ -47,59 +45,50 @@ function isLoggedIn(req, res, next) {
 }
 
 
-
+//Returns up to 5 events for display on the home page
 router.get('/', function (req, res) {
 	db.Event.findAll({
-		limit: 5,
-		order: ['eventDateTime']
+		where: {
+			eventDateTime: {
+				[Op.gte]: new Date() // or maybe moment().toDate(); 
+			}
+		},
+		order: [['eventDateTime', 'ASC']],
+		limit: 5
 	}).then(function (results) {
 		// res.json(res.user); //TODO return html instead of json
-		console.log('req.user', req.user);
+		// console.log('req.user', req.user);
 		return res.render("index", {events: results, user: req.user});
 	});
 });
 
-
-
 //Get all events with an event date greater than or equal to today 
-router.get("/createEvent",  function (req, res) {
+router.get("/addEvent",  function (req, res) {
 	let data = {x: "f"};
-	// console.log('createEvent req.user:', req.user);
-	return res.render("create-event", {data: data, user: req.user});
+	// console.log('addevent req.user:', req.user);
+	return res.render("addevent", {data: data, user: req.user});
 });
 
 
 //Get all events with an event date greater than or equal to today 
-router.get("events", function (req, res) {
+router.get("/events", function (req, res) {
 	db.Event.findAll({
 		where: {
 			eventDateTime: {
 				[Op.gte]: new Date() // or maybe moment().toDate(); 
 			}
 		},
-		order: ['eventDateTime', 'ASC']
-	}).then(function (dbEvent) {
-		res.json(dbEvent);
+		order: [['eventDateTime', 'ASC']]
+	}).then(function (results) {
+		// res.json(dbEvent);
+		// console.log(res.json(dbEvent)); 
+		return res.render("events", {events: results});
 	}); 
 });
 
-//Get first n events with an event date greater than or equal to today 
-router.get("/api/events/:limit", function (req, res) {
-	db.Event.findAll({
-		where: {
-			eventDateTime: {
-				[Op.gte]: new Date() // or maybe moment().toDate(); 
-			}
-		},
-		order: ['eventDateTime', 'ASC'],
-		limit: req.param.limit
-	}).then(function (dbEvent) {
-		res.json(dbEvent);
-	});
-});
 
 //Get event by id and include the organizer and helpers
-router.get('/api/events/:id', function (req, res) {
+router.get('/event/:id', function (req, res) {
 	db.Event.findAll({
 		where: {
 			id: req.params.id
