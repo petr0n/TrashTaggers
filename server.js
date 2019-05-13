@@ -2,11 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
 const passport = require("passport");
-const auth = require('./auth')
+const auth = require('./auth');
 const db = require("./models");
+const session = require("express-session");
+const cookieParser = require('cookie-parser');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// const Sequelize = require("sequelize");
-// const session = require("express-session");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,23 +18,21 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // auth
-auth(passport);
-app.use(passport.initialize());
-
-
 // Configure the session and session storage.
-const sessionConfig = {
-  resave: false,
-  saveUninitialized: false,
-  secret: "d3fu0djqefnoasidjfJPFH#9342",
-  //cookie: { maxAge: 60000 }
-  // store: new SequelizeStore({
-  //   db: sequelize,
-  //   table: 'Session'
-  // }),
-};
 
-app.use(passport.session(sessionConfig));
+auth(passport);
+app.use(cookieParser());
+app.use(session({ 
+  resave: true,
+  saveUninitialized: true,
+  secret: "d3fu0djqefnoasidjfJPFH#9342", 
+  store: new SequelizeStore({
+    db: db,
+    table: 'Session'
+  })
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Handlebars
@@ -55,6 +54,7 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+
 
 
 // Starting the server, syncing our models ------------------------------------/

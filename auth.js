@@ -1,22 +1,25 @@
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 let db = require("./models/");
 require("dotenv").config();
 
 
 module.exports = (passport) => {
 	passport.serializeUser((user, done) => {
-		// console.log(user);
-		done(null, user);
+		// console.log('serializeUser user:', user);
+		done(null, user.id);
 	});
-	passport.deserializeUser((userDataFromCookie, done) => {
-		done(null, userDataFromCookie);
+	passport.deserializeUser((id, done) => {
+		db.User.findById(id).then(user => {
+			console.log('deserializeUser id:', id);
+			return done(null, user);
+		});
 	});
 
 	passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENTID,
 		clientSecret: process.env.GOOGLE_CLIENTSECRET,
-		// callbackURL: "https://trashtaggers.herokuapp.com/auth/google/join"
-		callbackURL: process.env.GOOGLE_CALLBACKURL
+		callbackURL: process.env.GOOGLE_CALLBACKURL,
+    passReqToCallback: true
 	},
 		function (accessToken, refreshToken, profile, done) {
 			// console.log('profile', profile.displayName, profile.emails[0].value);
@@ -29,10 +32,10 @@ module.exports = (passport) => {
 					fullName: profile.displayName,
 					email: profile.emails[0].value
 				}
-			}).then(function (user) {
+			}).spread(user => {
 				// console.log('findorCreate user: ', user);
 				done(null, user);
-			}).catch(done);
+			}).catch(err => done(err, false))
 		}
 	));
 

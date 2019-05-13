@@ -24,11 +24,11 @@ router.get('/auth/google/join',
 		session: true 
 	}),
 	(req, res) => {
-		console.log('wooo we authenticated, here is our user object:', req.user);
+		//	console.log('wooo we authenticated, here is our user object:', req.user);
 		// res.json(req.user);
 		// req.session.fullName = req.user.fullName;
 		// req.session.email = req.user.email;
-		// console.log('callback', req.user);
+		console.log('join: ', req.user.fullName);
 		res.redirect('/?loggedIn=true');
 	}
 );
@@ -56,17 +56,17 @@ router.get('/', function (req, res) {
 		order: [['eventDateTime', 'ASC']],
 		limit: 5
 	}).then(function (results) {
-		// res.json(results); //TODO return html instead of json
-		return res.render("index", {events: results});
+		// res.json(res.user); //TODO return html instead of json
+		// console.log('req.user', req.user);
+		return res.render("index", {events: results, user: req.user});
 	});
 });
 
 //Get all events with an event date greater than or equal to today 
 router.get("/addEvent",  function (req, res) {
 	let data = {x: "f"};
-	// console.log('createEvent res.user:', res.user);
-
-	return res.render("addevent", {data: data});
+	// console.log('addevent req.user:', req.user);
+	return res.render("addevent", {data: data, user: req.user});
 });
 
 
