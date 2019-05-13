@@ -16,6 +16,9 @@
         <a class="btn btn-primary" href="/" role="button">Home</a>
         <a class="btn btn-primary" href="/auth/google" role="button">Login with Google</a>
         <a class="btn btn-primary" href="/createEvent" role="button">Create Event</a>
+        {{#if}}
+        You are logged in as {{user.fullName}}
+        {{/if}}
 
         <hr>
 
@@ -97,16 +100,7 @@
 
   </div>
 </div>
-<<<<<<< HEAD
-  {{user.fullName}}
-{{#each user}}
-{{/each}}
-=======
+  
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTcz-O5jhNzvfOOZD2cHm_T7fjs6gvFc0&callback=initMap">
-  </script>
-
->>>>>>> master
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
