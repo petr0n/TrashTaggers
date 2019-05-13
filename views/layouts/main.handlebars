@@ -26,43 +26,36 @@
 </head>
 
 <body>
-  <div id="home">
+
+  <div class="jumbotron jumbotron-fluid" style="text-align:center;">
     <div class="container">
-      <div class="jumbotron jumbotron-fluid" style="text-align:center;">
-        <div class="container">
-          <h1 class="display-4"
-            style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">
-            TrashTaggers!</h1>
-        </div>
-      </div>
-      {{{body}}}
+      <h1 class="display-4"
+        style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">
+        TrashTaggers!</h1>
     </div>
   </div>
-  <div class="modal" id="joinModal" tabindex="-1" role="dialog">
+
+  <hr>
+
+  {{{body}}}
+
+
+
+  <div class="modal" id="login" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Join Event</h5>
+          <h5 class="modal-title">Log In</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form action="" id="joinForm">
-            <div class="form-group">
-              <label for="fullName">Name:</label>
-              <input type="text" id="fullName">
-            </div>
-            <div class="form-group">
-              <label for="fullName">Email:</label>
-              <input type="text" id="email">
-            </div>
-            <input type="submit" value="submit" id="joinFormBtn">
-          </form>
+          <p>Log In with Google</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary loginBtn" href="/auth/google?action=join&eventId=4">Log In</a>
         </div>
       </div>
     </div>
@@ -71,7 +64,7 @@
 
 
 
-<div class="modal" id="login" tabindex="-1" role="dialog">
+  <div class="modal" id="login" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

@@ -1,21 +1,7 @@
-<hr>
-
-<div class="row">
-  <div class="col-6">
-    <h3><strong>Login &amp; Tell Us What You Want to Do!</strong></h3>
-    <a class="btn btn-primary" href="/" role="button">Home</a>
-    <a class="btn btn-primary" href="/auth/google" role="button">Login with Google</a>
-    <a class="btn btn-primary modalBtn" href="#" data-action="create-event" role="button">Create Event</a>
-    <a class="btn btn-primary" href="/logout" role="button">Logout</a>
-    <br>
-    {{#if user}}
-    You are logged in as {{user.fullName}}
-    {{/if}}
-
-    <hr>
+<div id="home">
+  <div class="container">
 
     <h3><strong>Current Events</strong></h3>
-
     <table class="table table-hover">
       <thead>
         <tr>
@@ -27,14 +13,15 @@
       </thead>
       <tbody>
         {{#if events}}
-        {{#each events}}
-        <tr>
-          <td><a href="/event/{{id}}">{{eventTitle}}</a></td>
-          <td>{{eventLocation}}</td>
-          <td>{{eventDateTime}}</td>
-          <td><a class="btn btn-primary modalBtn" data-id="{{id}}" href="#" role="button" data-action="join">Join</a></td>
-        </tr>
-        {{/each}}
+          {{#each events}}
+            <tr>
+              <td><a href="/event/{{id}}">{{eventTitle}}</a></td>
+              <td>{{eventLocation}}</td>
+              <td>{{eventDateTime}}</td>
+              <td><a class="btn btn-primary modalBtn" data-id="{{id}}" href="#" role="button" data-action="join">Join</a>
+              </td>
+            </tr>
+          {{/each}}
         {{/if}}
       </tbody>
     </table>
@@ -83,3 +70,7 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
