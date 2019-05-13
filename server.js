@@ -2,12 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
 const passport = require("passport");
-const auth = require('./auth')
+const auth = require('./auth');
 const db = require("./models");
+const session = require("express-session");
 
 const Sequelize = require("sequelize");
-const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,9 +20,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // auth
-auth(passport);
-app.use(passport.initialize());
-
+// Configure the session and session storage.
 let sequelize = new Sequelize({
   "username": "root",
   "password": "o7kLUrUb18gdzQzu",
@@ -29,19 +29,36 @@ let sequelize = new Sequelize({
   "port": 8889,
   "dialect": "mysql"
 });
-
-// Configure the session and session storage.
 const sessionConfig = {
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   secret: "d3fu0djqefnoasidjfJPFH#9342",
   store: new SequelizeStore({
     table: 'Session',
     db: sequelize,
   }),
 };
-
+// app.use(flash());
+app.use(session({ 
+  resave: false,
+  saveUninitialized: true,
+  secret: "d3fu0djqefnoasidjfJPFH#9342", 
+  store: new SequelizeStore({
+      db: sequelize,
+      table: 'Session'
+    })
+  })
+);
+auth(passport);
+app.use(passport.initialize());
+// app.use(passport.session());
 app.use(passport.session(sessionConfig));
+// app.use(function(req, res, next){
+//   if(req.url.match('/createEvent'))
+//     passport.session()(req, res, next)
+//   else
+//     next(); // do not invoke passport
+// });
 
 
 // Handlebars
