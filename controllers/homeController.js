@@ -64,9 +64,8 @@ router.get('/', function (req, res) {
 //Get all events with an event date greater than or equal to today 
 router.get("/createEvent",  function (req, res) {
 	let data = {x: "f"};
-	console.log('createEvent req.user:', req.user);
-
-	return res.render("create-event", {data: data, fullName: req.user});
+	// console.log('createEvent req.user:', req.user);
+	return res.render("create-event", {data: data, user: req.user});
 });
 
 

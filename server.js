@@ -5,10 +5,8 @@ const passport = require("passport");
 const auth = require('./auth');
 const db = require("./models");
 const session = require("express-session");
-
-const Sequelize = require("sequelize");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-
+const cookieParser = require('cookie-parser');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
 const app = express();
@@ -21,44 +19,20 @@ app.use(express.static("public"));
 
 // auth
 // Configure the session and session storage.
-let sequelize = new Sequelize({
-  "username": "root",
-  "password": "o7kLUrUb18gdzQzu",
-  "database": "trashTaggerDb",
-  "host": "localhost",
-  "port": 8889,
-  "dialect": "mysql"
-});
-const sessionConfig = {
-  resave: false,
-  saveUninitialized: true,
-  secret: "d3fu0djqefnoasidjfJPFH#9342",
-  store: new SequelizeStore({
-    table: 'Session',
-    db: sequelize,
-  }),
-};
-// app.use(flash());
+
+auth(passport);
+app.use(cookieParser());
 app.use(session({ 
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   secret: "d3fu0djqefnoasidjfJPFH#9342", 
   store: new SequelizeStore({
-      db: sequelize,
-      table: 'Session'
-    })
+    db: db,
+    table: 'Session'
   })
-);
-auth(passport);
+}));
 app.use(passport.initialize());
-// app.use(passport.session());
-app.use(passport.session(sessionConfig));
-// app.use(function(req, res, next){
-//   if(req.url.match('/createEvent'))
-//     passport.session()(req, res, next)
-//   else
-//     next(); // do not invoke passport
-// });
+app.use(passport.session());
 
 
 // Handlebars

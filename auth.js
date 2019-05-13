@@ -1,4 +1,4 @@
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 let db = require("./models/");
 require("dotenv").config();
 
@@ -18,7 +18,8 @@ module.exports = (passport) => {
 	passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENTID,
 		clientSecret: process.env.GOOGLE_CLIENTSECRET,
-		callbackURL: process.env.GOOGLE_CALLBACKURL
+		callbackURL: process.env.GOOGLE_CALLBACKURL,
+    passReqToCallback: true
 	},
 		function (accessToken, refreshToken, profile, done) {
 			// console.log('profile', profile.displayName, profile.emails[0].value);
