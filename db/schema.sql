@@ -39,3 +39,13 @@ CREATE TABLE usersEvents
     updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE Session 
+(
+  sid varchar(255) NOT NULL,
+  expires datetime DEFAULT NULL,
+  data text,
+  createdAt datetime NOT NULL,
+  updatedAt datetime NOT NULL,
+  PRIMARY KEY (sid)
+);
