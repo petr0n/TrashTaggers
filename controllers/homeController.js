@@ -9,19 +9,19 @@ const Op = db.Sequelize.Op //should this be in the index.js file?
 
 // GET /auth/google
 router.get('/auth/google',
-	passport.authenticate('google', { 
+	passport.authenticate('google', {
 		scope: [
 			'https://www.googleapis.com/auth/userinfo.profile',
 			'https://www.googleapis.com/auth/userinfo.email'
-		] 
+		]
 	})
-);  
+);
 
-router.get('/auth/google/join', 
-  passport.authenticate('google', { 
+router.get('/auth/google/join',
+	passport.authenticate('google', {
 		// successRedirect : '/?success=1',
 		failureRedirect: '/error',
-		session: true 
+		session: true
 	}),
 	(req, res) => {
 		//	console.log('wooo we authenticated, here is our user object:', req.user);
@@ -38,7 +38,7 @@ function isLoggedIn(req, res, next) {
 	console.log('req', req.isAuthenticated());
 	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated())
-			return next();
+		return next();
 
 	// if they aren't redirect them to the home page
 	res.redirect('/auth/google');
@@ -58,15 +58,15 @@ router.get('/', function (req, res) {
 	}).then(function (results) {
 		// res.json(res.user); //TODO return html instead of json
 		// console.log('req.user', req.user);
-		return res.render("index", {events: results, user: req.user});
+		return res.render("index", { events: results, user: req.user });
 	});
 });
 
-//Get all events with an event date greater than or equal to today 
-router.get("/addEvent",  function (req, res) {
-	let data = {x: "f"};
+//Return add event view
+router.get("/addEvent", function (req, res) {
+	let data = { x: "f" };
 	// console.log('addevent req.user:', req.user);
-	return res.render("addevent", {data: data, user: req.user});
+	return res.render("addevent", { data: data, user: req.user });
 });
 
 
@@ -82,8 +82,8 @@ router.get("/events", function (req, res) {
 	}).then(function (results) {
 		// res.json(dbEvent);
 		// console.log(res.json(dbEvent)); 
-		return res.render("events", {events: results});
-	}); 
+		return res.render("events", { events: results });
+	});
 });
 
 
@@ -99,52 +99,58 @@ router.get('/event/:id', function (req, res) {
 				model: db.User
 			}]
 		}]
-	}).then(function (dbEvent) {
-		res.json(dbEvent);
+	}).then(function (results) {
+		// res.json(dbEvent);
+		console.log((results));
+		return res.render("viewevent", { event: results });
 	});
 });
 
-//Create Event and UsersEvents
-router.post("/api/events", function (req, res) {
-	console.log(req.body);
-	db.Event.create({
-		eventTitle: req.body.eventTitle,  //need the names from the form
-		eventLocation: req.body.eventLocation,
-		eventDesc: req.body.eventDesc,
-		eventDateTime: req.body.eventDateTime,
-		byob: req.body.byob
-	}).then(function (dbEvent) {
-		db.UsersEvents.create({
-			userId: req.param.userid,
-			eventId: dbEvent.event_id
-		}).then(function (dbUsersEvents) {
-			res.json(dbUsersEvents);
-		});
-	});
-
-});
-
-//join event
-//TODO -- Parameters or part of the request body????
-router.post("/api/UsersEvents/:eventid/:userid", function (req, res) {
-	console.log(req.body);
-	db.UsersEvents.create({
-		userId: req.param.userid,
-		eventId: req.param.eventid
-	}).then(function (dbUsersEvents) {
-		res.json(dbUsersEvents);
-	});
-});
-
-//create user
-router.post("/api/users", function (req, res) {
+//Create User, Event and UsersEvents
+router.post("/api/add/event", function (req, res) {
 	console.log(req.body);
 	db.User.create({
 		fullName: req.body.fullName,
 		email: req.body.email,
 		googleIdToken: req.body.googleIdToken,
 	}).then(function (dbUser) {
-		res.json(dbUser);
+		console.log(dbUser)
+		db.Event.create({
+			eventTitle: req.body.eventTitle,  //need the names from the form
+			eventLocation: req.body.eventLocation,
+			eventDesc: req.body.eventDesc,
+			eventDateTime: req.body.eventDateTime,
+			byob: req.body.byob
+		}).then(function (dbEvent) {
+			db.UsersEvents.create({
+				UserId: dbUser.dataValues.id,
+				eventId: dbEvent.dataValues.id,
+				organizer: true
+			}).then(function (dbUsersEvents) {
+				console.log(dbUsersEvents)
+				res.json(dbUsersEvents);
+			});
+		});
+	});
+});
+
+//Join Event 
+//Create User (if doesn't already exist), and UsersEvents
+router.post("/api/join/:eventId", function (req, res) {
+	console.log(req.body);
+	db.User.create({
+		fullName: req.body.fullName,
+		email: req.body.email,
+		googleIdToken: req.body.googleIdToken,
+	}).then(function (dbUser) {
+		console.log(dbUser)
+		db.UsersEvents.create({
+			UserId: dbUser.dataValues.id,
+			eventId: req.params.eventId
+		}).then(function (dbUsersEvents) {
+			console.log(dbUsersEvents)
+			res.json(dbUsersEvents);
+		});
 	});
 });
 
