@@ -37,11 +37,21 @@ $(function () {
         ); // ==> end POST request
     }) // ==> end add an event
     
-    // join an event
-    $(".joinBtn").on("click", function(event) {
-        event.preventDefault();
-        $("#joinModal").modal();
+    // pop modal for join or create to login
+    $(".modalBtn").on("click", function(e) {
+        e.preventDefault();
+        let modalEl = $("#login");
+        let action = $(this).data('action');
+        let eventId = $(this).data('id');
+        if (action === 'create-event'){
+            modalEl.find('.loginBtn').attr('href', '/auth/google?action=create-event');
+        } else {
+            modalEl.find('.loginBtn').attr('href', '/auth/google?action=join&eventId=' + eventId);
+        }
+
+        modalEl.modal();
     });
+    // join an event
     $(".joinFormBtn").on("click", function(event) {
         event.preventDefault();
         let errorMessage;
