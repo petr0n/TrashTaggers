@@ -1,48 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const passport = require("passport");
+// const passport = require("passport");
 
 let db = require("../models/");
 
 const Op = db.Sequelize.Op //should this be in the index.js file?
-
-
-// GET /auth/google
-router.get('/auth/google',
-	passport.authenticate('google', {
-		scope: [
-			'https://www.googleapis.com/auth/userinfo.profile',
-			'https://www.googleapis.com/auth/userinfo.email'
-		]
-	})
-);
-
-router.get('/auth/google/join',
-	passport.authenticate('google', {
-		// successRedirect : '/?success=1',
-		failureRedirect: '/error',
-		session: true
-	}),
-	(req, res) => {
-		//	console.log('wooo we authenticated, here is our user object:', req.user);
-		// res.json(req.user);
-		// req.session.fullName = req.user.fullName;
-		// req.session.email = req.user.email;
-		console.log('join: ', req.user.fullName);
-		res.redirect('/?loggedIn=true');
-	}
-);
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-	console.log('req', req.isAuthenticated());
-	// if user is authenticated in the session, carry on
-	if (req.isAuthenticated())
-		return next();
-
-	// if they aren't redirect them to the home page
-	res.redirect('/auth/google');
-}
 
 
 //Returns up to 5 events for display on the home page
@@ -153,5 +115,18 @@ router.post("/api/join/:eventId", function (req, res) {
 		});
 	});
 });
+
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+	console.log('req', req.isAuthenticated());
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+			return next();
+
+	// if they aren't redirect them to the home page
+	res.redirect('/auth/google');
+}
+
 
 module.exports = router;

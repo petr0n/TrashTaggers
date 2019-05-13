@@ -46,6 +46,9 @@ app.set("view engine", "handlebars");
 
 let routes = require('./controllers/homeController.js');
 app.use(routes);
+let authRoutes = require('./controllers/authController.js');
+app.use(authRoutes);
+
 
 var syncOptions = { force: false };
 

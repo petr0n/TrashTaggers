@@ -10,7 +10,7 @@ module.exports = (passport) => {
 	});
 	passport.deserializeUser((id, done) => {
 		db.User.findById(id).then(user => {
-			console.log('deserializeUser id:', id);
+			// console.log('deserializeUser id:', id);
 			return done(null, user);
 		});
 	});
@@ -18,11 +18,10 @@ module.exports = (passport) => {
 	passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENTID,
 		clientSecret: process.env.GOOGLE_CLIENTSECRET,
-		callbackURL: process.env.GOOGLE_CALLBACKURL,
-    passReqToCallback: true
+		callbackURL: process.env.GOOGLE_CALLBACKURL
 	},
 		function (accessToken, refreshToken, profile, done) {
-			// console.log('profile', profile.displayName, profile.emails[0].value);
+			// console.log('profile', profile);
 			db.User.findOrCreate({
 				where: {
 					googleIdToken: profile.id
