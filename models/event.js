@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     eventDateTime: {
       type: DataTypes.DATE,
       get: function() {
-        return moment(this.getDataValue('DateTime')).format('DD/MM/YYYY')
+        return moment(this.getDataValue('DateTime')).format('MMM Do, YYYY')
       }
     },
     byob: {

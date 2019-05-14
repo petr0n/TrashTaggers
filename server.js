@@ -38,7 +38,8 @@ app.use(passport.session());
 app.engine(
   "handlebars",
   exphbs({
-    defaultLayout: "main"
+    defaultLayout: "main",
+    partialsDir: __dirname + '/views/partials/'
   })
 );
 app.set("view engine", "handlebars");
@@ -49,14 +50,7 @@ let authRoutes = require('./controllers/authController.js');
 app.use(authRoutes);
 
 
-var syncOptions = { force: true };
-
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
-
+var syncOptions = { force: false };
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {

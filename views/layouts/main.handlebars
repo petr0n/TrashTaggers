@@ -28,19 +28,27 @@
 
 <body>
 
-  <div class="container">
 
+    <header>
+      <div class="container">
+        <img src="../../images/happybags.png" alt="Happy Bags" class="bags">
+        <h1>TrashTaggers</h1>
+        <img src="../../images/flower.png" alt="Flower" class="flower">
+      </div>
+    </header>
     <!-- =============== JUMBOTRON  =============== -->
   
-    <div class="jumbotron jumbotron-fluid" style="text-align:center;">
+    {{!-- <div class="jumbotron jumbotron-fluid" style="text-align:center;">
       <div class="container">
         <h1 class="display-4"
           style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">
           TrashTaggers!</h1>
       </div>
+    </div> --}}
+    <div class="container">
+      {{{body}}}
     </div>
-    <hr>
-    {{{body}}}
+
     <div class="modal" id="login" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -61,25 +69,16 @@
       </div>
     </div>
 
-    <!-- =============== FOOTER =============== -->
+  <!-- =============== FOOTER =============== -->
 
-    <footer>
-      TrashTaggers&nbsp;&nbsp;&nbsp;
-      <a href="/">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-      <a href="/addEvent">Create an Event</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-      <a href="/events">View All Events</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-      <a href=="/logout">Logout</a>&nbsp;
-    </footer>
+  <footer>
+    TrashTaggers&nbsp;&nbsp;&nbsp;
+    <a href="/">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/addEvent">Create an Event</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/events">View All Events</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href=="/logout">Logout</a>&nbsp;
+  </footer>
 
-<<<<<<< HEAD
-
-=======
-  </div> <!-- end container -->
-  
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTcz-O5jhNzvfOOZD2cHm_T7fjs6gvFc0&callback=initMap"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
->>>>>>> master
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
@@ -96,5 +95,4 @@
     });</script>
 
 </body>
-
 </html>

@@ -1,7 +1,75 @@
+
+@import url('https://fonts.googleapis.com/css?family=Prompt');
+
+/* header */
+
+header {
+  background-image: url('../images/header-bg.png');
+  background-size: cover;
+  height: 270px;
+}
+header .container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 250px;
+}
+header .bags {
+  height: 172px;
+  width: 284px;
+}
+header .flower {
+  margin: 0 0 9px 5px;
+  width: 42px;
+}
+header h1 {
+  font-family: 'Prompt', sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+  padding-left: 50px;
+}
+
+h2, h3, h4 {
+  font-family: 'Prompt', sans-serif;
+  color: rgb(98, 160, 26);
+}
+h3 {
+  color: #72BE1E;
+}
+
+
+
+/* index */
+
+/* page-header */
+.nav {
+  margin-bottom: 35px;
+}
+.page-header {
+  margin-bottom: 35px;
+}
+
+
+
+/* footer */
+
+footer {
+  margin-top: 100px;
+  background-color: #a7cdf2;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
 .list-group-item {
   line-height: 2.5;
 }
 
+/*
 .bigContainer {
   background-image: url("../images/background.jpg");
 }
@@ -69,14 +137,4 @@
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
   transition: box-shadow 1s; 
 }
-
-
-footer {
-  margin-top: 100px;
-  background-color: #a7cdf2;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+*/
