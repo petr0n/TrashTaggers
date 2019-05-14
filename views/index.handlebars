@@ -2,28 +2,39 @@
 
 <div id="home">
   <div class="container">
+
+    <!-- =============== NAVIGATION =============== -->
+
     <div class="row">
       <div class="col-md-12">
-
-        <!-- =============== NAVIGATION  =============== -->
-
         <a href="/">Home</a>&nbsp|&nbsp
         <a href="/addEvent">Create an Event</a>&nbsp|&nbsp
         <a href="/events">View All Events</a>&nbsp|&nbsp
-        <a href=="/logout">Logout</a>&nbsp
+        <a href="/logout">Logout</a>&nbsp
         <br>
         <br>
       </div>
+    </div> <!-- end nav row + map table -->
 
-      <!-- =============== EVENT AND MAP  =============== -->
+    <!-- =============== TITLE ROW =============== -->
 
-      <div class="row">
-        <div class="col-md-6">
-          <h1><strong>Login &amp; Tell Us What You Want to Do!</strong></h1>
-          {{#if user}}
-          You are logged in as {{user.fullName}}
-          {{/if}}
-          <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h1><strong>Tell Us What You Want to Do!</strong></h1>
+        {{#if user}}
+        You are logged in as {{user.fullName}}
+        {{/if}}
+      </div>
+    </div>
+    <hr>
+
+    <!-- =============== TABLE AND MAP =============== -->
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <!-- =============== TABLE =============== -->
+        
         <h3 style="padding: 0 0 10px 0;"><strong>Current Events</strong></h3>
         <table class="table table-hover">
           <thead>
@@ -49,9 +60,11 @@
             {{/if}}
           </tbody>
         </table>
-        <a href="/events">view all events</a>
+        <a href="/events">View All Events</a>
       </div>
-  
+
+      <!-- =============== MAP COLUMN =============== -->
+
       <div class="col-6">
         <div id="map"></div>
         <script>
@@ -63,16 +76,15 @@
           }
         </script>
       </div>
-    </div>
-
+    </div> <!-- end event + map table -->
     <hr>
 
-  <div class="row">
-    <div class="col-12">
-      <h3><strong>Check out the latest #trashtag photos from Intsagram!</strong></h3>
+    <!-- =============== INSTAGRAM =============== -->
 
+    <div class="row">
+      <div class="col-12">
+        <h3><strong>Check out the latest #trashtag photos from Intsagram!</strong></h3>
         <br>
-
         <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner" id="images">
             <!--instagram feed goes here-->
@@ -87,5 +99,6 @@
           </a>
         </div>
       </div>
-    </div>
-  </div>
+    </div> <!-- end instagram row -->
+  </div> <!-- end container -->
+</div> <!-- end div ID Home  -->
