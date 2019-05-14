@@ -63,8 +63,8 @@ router.get('/event/:id', function (req, res) {
 		}]
 	}).then(function (results) {
 		//  res.json(results);
-		// console.log((results));
-		return res.render("viewevent", { event: results, user: req.user });
+		console.log(req.query.joined);
+		return res.render("viewevent", { event: results, user: req.user, joined: req.query.joined });
 	});
 });
 

@@ -1,6 +1,6 @@
 
 <div class="row nav">
-  <div class="col-md-12">
+  <div class="col-md-8">
     <a href="/">Home</a>&nbsp|&nbsp
     <a href="/addEvent">Create an Event</a>&nbsp|&nbsp
     <a href="/events">View All Events</a>
@@ -9,12 +9,18 @@
     <a href="/logout">Logout</a>&nbsp
     {{/if}}
   </div>
-</div>
-<div class="row page-header">
-  <div class="col-md-12">
-    <h2>{{title}}</h2>
-    {{#if user}}
-      You are logged in as {{user.fullName}}
-    {{/if}}
+  <div class="col-md-4">
+    <p style="text-align:right;">
+      {{#if user}}
+        You are logged in as {{user.fullName}}
+      {{/if}}
+    </p>
   </div>
 </div>
+{{#if title}}
+  <div class="row page-header">
+    <div class="col-md-12">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+{{/if}}
