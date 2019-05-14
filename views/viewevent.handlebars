@@ -9,6 +9,7 @@
             hashtagTrashtag!
         </div>
         {{#if event}}
+        {{#each event}}
         <div class="card-body">
             <h5 class="card-title">{{eventTitle}}</h5>
             <p class="card-text">{{eventDesc}}</p>
@@ -26,6 +27,7 @@
         <div class="card-footer text-muted">
             Equipment provided: {{byob}}
         </div>
+        {{/each}}
         {{/if}}
     </div>
 
