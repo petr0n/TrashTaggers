@@ -21,6 +21,3 @@ INSERT INTO UsersEvents (userId, eventId) VALUES (2, 2);
 INSERT INTO UsersEvents (userId, eventId) VALUES (3, 1);
 INSERT INTO UsersEvents (userId, eventId, organizer) VALUES (6, 1, true);
 INSERT INTO UsersEvents (userId, eventId) VALUES (4, 3);
-
-
-
