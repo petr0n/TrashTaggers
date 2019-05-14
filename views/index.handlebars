@@ -44,11 +44,24 @@
       <div class="col-6">
         <div id="map"></div>
         <script>
+          let addressesArray = [ {{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ]; 
+  
           function initMap() {
             var uluru = { lat: 44.983, lng: -93.184 };
             var map = new google.maps.Map(
               document.getElementById('map'), { zoom: 7, center: uluru });
-            var marker = new google.maps.Marker({ position: uluru, map: map });
+              // var marker = new google.maps.Marker({ position: uluru, map: map });
+              //loop all the addresses and call a marker for each one
+              for (var x = 0; x < addressesArray.length; x++) {
+                $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+addressesArray[x]+'&sensor=false&key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y', null, function (data) {
+                    var p = data.results[0].geometry.location
+                    var latlng = new google.maps.LatLng(p.lat, p.lng);
+                    var aMarker= new google.maps.Marker({
+                        position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations. 
+                        map: map 
+                    });
+                });
+              }
           }
         </script>
       </div>
@@ -89,22 +102,5 @@
 
 <script>
   
-  var addressesArray = [
-  {{#if events}}
-    {{#each events}}
-      "{{eventLocation}}",
-    {{/each}}
-  {{/if}}
-  ]; 
-  //loop all the addresses and call a marker for each one
-  for (var x = 0; x < addressesArray.length; x++) {
-    $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+addressesArray[x]+'&sensor=false&key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y', null, function (data) {
-        var p = data.results[0].geometry.location
-        var latlng = new google.maps.LatLng(p.lat, p.lng);
-        var aMarker= new google.maps.Marker({
-            position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations. 
-            map: map 
-        });
-    });
-  }
+
 </script>
