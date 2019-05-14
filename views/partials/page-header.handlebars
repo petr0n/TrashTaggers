@@ -1,17 +1,20 @@
 
 <div class="row nav">
-    <div class="col-md-12">
-        <a href="/">Home</a>&nbsp|&nbsp
-        <a href="/addEvent">Create an Event</a>&nbsp|&nbsp
-        <a href="/events">View All Events</a>&nbsp|&nbsp
-        <a href="/logout">Logout</a>&nbsp
-    </div>
+  <div class="col-md-12">
+    <a href="/">Home</a>&nbsp|&nbsp
+    <a href="/addEvent">Create an Event</a>&nbsp|&nbsp
+    <a href="/events">View All Events</a>
+    {{#if user}}
+    &nbsp|&nbsp
+    <a href="/logout">Logout</a>&nbsp
+    {{/if}}
+  </div>
 </div>
 <div class="row page-header">
   <div class="col-md-12">
     <h2>{{title}}</h2>
     {{#if user}}
-    You are logged in as {{user.fullName}}
+      You are logged in as {{user.fullName}}
     {{/if}}
   </div>
 </div>

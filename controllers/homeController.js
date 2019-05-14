@@ -7,6 +7,8 @@ let db = require("../models/");
 const Op = db.Sequelize.Op //should this be in the index.js file?
 
 
+/*********** HTML ROUTES ************/
+
 //Returns up to 5 events for display on the home page
 router.get('/', function (req, res) {
 	db.Event.findAll({
@@ -44,7 +46,7 @@ router.get("/events", function (req, res) {
 	}).then(function (results) {
 		// res.json(dbEvent);
 		// console.log(res.json(dbEvent)); 
-		return res.render("events", { events: results });
+		return res.render("events", { events: results, user: req.user  });
 	});
 });
 
@@ -62,9 +64,14 @@ router.get('/event/:id', function (req, res) {
 	}).then(function (results) {
 		//  res.json(results);
 		// console.log((results));
-		return res.render("viewevent", { event: results });
+		return res.render("viewevent", { event: results, user: req.user });
 	});
 });
+
+
+
+
+/*********** API ROUTES ************/
 
 //Create User, Event and UsersEvents
 router.post("/api/add/event", function (req, res) {
@@ -128,6 +135,7 @@ router.post("/api/join/:eventId", function (req, res) {
 });
 
 
+// TODO maybe delete
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 	console.log('req', req.isAuthenticated());
