@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
 		order: [['eventDateTime', 'ASC']],
 		limit: 5
 	}).then(function (results) {
-		// res.json(res.user); //TODO return html instead of json
+		// res.json(res.user); 
 		// console.log('req.user', req.user);
 		return res.render("index", { events: results, user: req.user });
 	});
@@ -52,41 +52,47 @@ router.get("/events", function (req, res) {
 //Get event by id and include the organizer and helpers
 router.get('/event/:id', function (req, res) {
 	db.Event.findAll({
-		where: {
-			id: req.params.id
-		},
 		include: [{
 			model: db.UsersEvents,
 			include: [{
 				model: db.User
-			}]
+			}],
+			where: {EventId: req.params.id}
 		}]
 	}).then(function (results) {
-		// res.json(dbEvent);
-		console.log((results));
+		//  res.json(results);
+		// console.log((results));
 		return res.render("viewevent", { event: results });
 	});
 });
 
 //Create User, Event and UsersEvents
 router.post("/api/add/event", function (req, res) {
-	console.log(req.body);
-	db.User.create({
-		fullName: req.body.fullName,
-		email: req.body.email,
-		googleIdToken: req.body.googleIdToken,
+	console.log("request", req.body);
+	db.User.findOrCreate({
+		where: {
+			email: req.body.email
+		},
+		defaults: {
+			fullName: req.body.fullName,
+			email: req.body.email,
+			googleIdToken: req.body.googleIdToken
+		}
 	}).then(function (dbUser) {
-		console.log(dbUser)
+		console.log("dbUser", dbUser)
 		db.Event.create({
-			eventTitle: req.body.eventTitle,  //need the names from the form
+			eventTitle: req.body.eventTitle,  
 			eventLocation: req.body.eventLocation,
 			eventDesc: req.body.eventDesc,
 			eventDateTime: req.body.eventDateTime,
 			byob: req.body.byob
 		}).then(function (dbEvent) {
+			// console.log("dbUser", dbUser)
+			// console.log("dbEvent", dbEvent)
+			// console.log ("user id", dbUser[0].dataValues)
 			db.UsersEvents.create({
-				UserId: dbUser.dataValues.id,
-				eventId: dbEvent.dataValues.id,
+				UserId: dbUser[0].dataValues.id,
+				EventId: dbEvent.dataValues.id,
 				organizer: true
 			}).then(function (dbUsersEvents) {
 				console.log(dbUsersEvents)
@@ -100,15 +106,20 @@ router.post("/api/add/event", function (req, res) {
 //Create User (if doesn't already exist), and UsersEvents
 router.post("/api/join/:eventId", function (req, res) {
 	console.log(req.body);
-	db.User.create({
-		fullName: req.body.fullName,
-		email: req.body.email,
-		googleIdToken: req.body.googleIdToken,
+	db.User.findOrCreate({
+		where: {
+			email: req.body.email
+		},
+		defaults: {
+			fullName: req.body.fullName,
+			email: req.body.email,
+			googleIdToken: req.body.googleIdToken
+		}
 	}).then(function (dbUser) {
 		console.log(dbUser)
 		db.UsersEvents.create({
-			UserId: dbUser.dataValues.id,
-			eventId: req.params.eventId
+			UserId: dbUser[0].dataValues.id,
+			EventId: req.params.eventId
 		}).then(function (dbUsersEvents) {
 			console.log(dbUsersEvents)
 			res.json(dbUsersEvents);
@@ -122,7 +133,7 @@ function isLoggedIn(req, res, next) {
 	console.log('req', req.isAuthenticated());
 	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated())
-			return next();
+		return next();
 
 	// if they aren't redirect them to the home page
 	res.redirect('/auth/google');

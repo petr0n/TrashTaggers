@@ -3,17 +3,17 @@ module.exports = function (sequelize, DataTypes) {
 		// userId: {
 		// 	type: DataTypes.INTEGER
 		// },
-		eventId: {
-			type: DataTypes.INTEGER
-		},
+		// eventId: {
+		// 	type: DataTypes.INTEGER
+		// },
 		organizer: {
 			type: DataTypes.BOOLEAN,
-			default: false
+			defaultValue: false
 		}
 	});
 
 	UsersEvents.associate = function (models) {
-		UsersEvents.hasMany(models.Event); 
+		UsersEvents.belongsTo(models.Event); 
 		UsersEvents.belongsTo(models.User);
 	}
 
