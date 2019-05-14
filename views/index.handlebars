@@ -5,14 +5,15 @@
         <h3><strong>Login &amp; Tell Us What You Want to Do!</strong></h3>
         <a class="btn btn-primary" href="/" role="button">Home</a>
         <a class="btn btn-primary" href="/auth/google" role="button">Login with Google</a>
-        <a class="btn btn-primary" href="/addevent" role="button">Create Event</a>
+        <a class="btn btn-primary" href="/addEvent" role="button">Create Event</a>
+
         {{#if user}}
         You are logged in as {{user.fullName}}
         {{/if}}
 
         <hr>
 
-        <h3><strong>Current Events</strong></h3>
+        <h3 style="padding: 0 0 10px 0;"><strong>Current Events</strong></h3>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -53,7 +54,7 @@
       </div>
     </div>
 
-
+<hr>
 
   <div class="row">
     <div class="col-12">

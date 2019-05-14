@@ -62,6 +62,7 @@
   box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: box-shadow 1s;
+  margin-bottom: 10px;
 }
 
 .btn:hover {
