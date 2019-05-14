@@ -45,7 +45,7 @@
       <div class="col-6">
         <div id="map"></div>
         <script>
-          let addressesArray = [{{ #if events }} { { #each events } } "{{eventLocation}}", {{ /each}} {{/if }} ];
+          let addressesArray = [{{ #if events }} {{ #each events }} "{{eventLocation}}", {{/each}} {{/if }} ];
 
           function initMap() {
             var uluru = { lat: 44.983, lng: -93.184 };
@@ -65,6 +65,7 @@
               }
             }
         </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y&callback=initMap"></script>
       </div>
     </div>
 
@@ -100,8 +101,4 @@
       </div>
     </div>
   </div>
-
-  <script>
-
-
-  </script>
+</div>
