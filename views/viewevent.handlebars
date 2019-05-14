@@ -1,45 +1,28 @@
 <!-- =============== VIEW A SINGLE EVENT  =============== -->
 
 <div id="event">
-
-    <!-- =============== AN EVENT =============== -->
-
     <div class="container">
-        <div class="card text-center">
-            <div class="card-header">
-                hashtagTrashtag!
-            </div>
-            {{#if event}}
-            {{#each event}}
-            <div class="card-body">
-                <h5 class="card-title">{{eventTitle}}</h5>
-                <p class="card-text">{{eventDesc}}</p>
+        {{> page-header title="" }}
 
-                <!-- google map -->
-                {{!-- <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY
-            &q=Space+Needle,Seattle+WA" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen>
-                </iframe> --}}
+        <!-- =============== AN EVENT =============== -->
+        {{#if event}}
+            {{#each event}}
+                <h2 class="card-title">{{eventTitle}}</h2>
+                <p class="card-text">{{eventDesc}}</p>
 
                 <p class="card-text">{{eventLocation}}</p>
                 <p class="card-text">{{eventDateTime}}</p>
 
                 <a href="#" data-id="{{id}}" class="joinBtn">Join</a>
-            </div>
-            <div class="card-footer text-muted">
                 Bags Needed: {{byob}}
-            </div>
             {{/each}}
-            {{/if}}
-        </div>
-        {{/each}}
         {{/if}}
-        {{#if user}}
+
+        {{!-- {{#if user}}
         {{#each user}}
         {{fullName}}<br>
-         {{/each}}
-        {{/if}}
-        
-    </div>
+        {{/each}}
+        {{/if}} --}}
 
     </div> <!-- end Container-->
-</div> <!-- end id event -->
+</div><!-- end id event -->

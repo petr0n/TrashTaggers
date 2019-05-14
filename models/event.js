@@ -1,3 +1,4 @@
+const moment = require("moment");
 module.exports = function(sequelize, DataTypes) {
   let Event = sequelize.define("Event", {
     eventTitle: {
@@ -10,7 +11,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT
     },
     eventDateTime: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      get: function() {
+        return moment(this.getDataValue('DateTime')).format('MMM Do, YYYY')
+      }
     },
     byob: {
       type: DataTypes.BOOLEAN
