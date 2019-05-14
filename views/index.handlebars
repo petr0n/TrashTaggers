@@ -48,9 +48,9 @@
           let addressesArray = [ {{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ];
 
           function initMap() {
-            var uluru = { lat: 44.983, lng: -93.184 };
+            var mpls = { lat: 44.9778, lng: 93.2650 };
             var map = new google.maps.Map(
-              document.getElementById('map'), { zoom: 7, center: uluru });
+              document.getElementById('map'), { zoom: 7, center: mpls });
               // var marker = new google.maps.Marker({ position: uluru, map: map });
               //loop all the addresses and call a marker for each one
               for (var x = 0; x < addressesArray.length; x++) {
