@@ -45,7 +45,7 @@
       <div class="col-6">
         <div id="map"></div>
         <script>
-          let addressesArray = [{{ #if events }} {{ #each events }} "{{eventLocation}}", {{/each}} {{/if }} ];
+          let addressesArray = [ {{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ];
 
           function initMap() {
             var uluru = { lat: 44.983, lng: -93.184 };
