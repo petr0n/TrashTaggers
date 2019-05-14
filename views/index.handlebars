@@ -1,18 +1,29 @@
+<!-- =============== HOME PAGE =============== -->
+
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-6">
-        <h3><strong>Login &amp; Tell Us What You Want to Do!</strong></h3>
-        <a class="btn btn-primary" href="/" role="button">Home</a>
-        <a class="btn btn-primary" href="/auth/google" role="button">Login with Google</a>
-        <a class="btn btn-primary" href="/addEvent" role="button">Create Event</a>
+      <div class="col-md-12">
 
-        {{#if user}}
-        You are logged in as {{user.fullName}}
-        {{/if}}
+        <!-- =============== NAVIGATION  =============== -->
 
-        <hr>
+        <a href="/">Home</a>&nbsp|&nbsp
+        <a href="/addEvent">Create an Event</a>&nbsp|&nbsp
+        <a href="/events">View All Events</a>&nbsp|&nbsp
+        <a href=="/logout">Logout</a>&nbsp
+        <br>
+        <br>
+      </div>
 
+      <!-- =============== EVENT AND MAP  =============== -->
+
+      <div class="row">
+        <div class="col-md-6">
+          <h1><strong>Login &amp; Tell Us What You Want to Do!</strong></h1>
+          {{#if user}}
+          You are logged in as {{user.fullName}}
+          {{/if}}
+          <hr>
         <h3 style="padding: 0 0 10px 0;"><strong>Current Events</strong></h3>
         <table class="table table-hover">
           <thead>
@@ -39,8 +50,7 @@
         </table>
         <a href="/events">view all events</a>
       </div>
-   
-
+  
       <div class="col-6">
         <div id="map"></div>
         <script>
@@ -58,7 +68,7 @@
 
   <div class="row">
     <div class="col-12">
-      <h3><strong>Check Out All the Good That's Being Done Already!</strong></h3>
+      <h3><strong>Check out the latest #trashtag photos from Intsagram!</strong></h3>
 
       <br>
 
