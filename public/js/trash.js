@@ -7,32 +7,33 @@ $(function () {
     // add an event
     $("#addEvent").on("submit", function (event) {
         event.preventDefault();
+        //console.log("hello");
+        //concatenate strings
+        var theLocation = $("#addrOne").val().trim() + " " + $("#addrTwo").val().trim() + " " + $("#city").val().trim() + " " + $("#state").val().trim() + " " + $("#zip").val().trim();
 
+        var dateTime = $("#eventDate").val() + " " + $("#eventTime").val();
+        
         //get newEvent data for POST to db.events
         var newEvent = {
             eventTitle: $("#eventTitle").val().trim(),
             fullName: $("#fullName").val().trim(),
             email: $("#email").val().trim(),
-            addrOne: $("#addrOne").val().trim(),
-            addrTwo: $("#addrTwo").val().trim(),
-            city: $("#city").val().trim(),
-            state: $("#state").val().trim(),
-            zip: $("#zip").val().trim(),
-            eventDate: $("#eventDateTime").val().trim(),
-            eventTime: $("#eventTime").val().trim(),
+            eventLocation: theLocation,
+            eventDateTime: dateTime,
             eventDesc: $("#eventDesc").val().trim(),
             byob: $("#byob").val().trim(),
         } // ==> end var newEvent
 
+        console.log(newEvent);
         //send the POST request
         $.ajax("/api/add/event", {
             type: "POST",
             data: newEvent
 
         }).then(
-            function () {
-               console.log("New Event Created!");
-                location.reload();
+            function (data) {
+               console.log(data);
+               window.location.href = "/event/" + data.eventId;
             }
         ); // ==> end POST request
     }) // ==> end add an event
