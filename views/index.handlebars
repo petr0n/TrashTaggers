@@ -98,7 +98,7 @@
   ]; 
   //loop all the addresses and call a marker for each one
   for (var x = 0; x < addressesArray.length; x++) {
-    $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+addressesArray[x]+'&sensor=false&key=AIzaSyBTcz-O5jhNzvfOOZD2cHm_T7fjs6gvFc0', null, function (data) {
+    $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address='+addressesArray[x]+'&sensor=false&key=AIzaSyDF8fIZ2HGWAFcBNlrftM0IbgzAmrCV2hA', null, function (data) {
         var p = data.results[0].geometry.location
         var latlng = new google.maps.LatLng(p.lat, p.lng);
         var aMarker= new google.maps.Marker({
