@@ -1,107 +1,123 @@
+<!-- =============== ADD AN EVENT =============== -->
+
 <div class="container">
-  
-  <br>
-  <h3><strong>Add a #trashtag event!</strong></h3>
-  <br>
 
-  <!-- =============== FORM START  =============== -->
+  <!-- =============== NAVIGATION =============== -->
 
-  <form id="addEvent">
-
-    <!-- =============== TITLE ROW  =============== -->
-
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="eventTitle">Event Title</label>
-        <input type="text" class="form-control" id="eventTitle" placeholder="Name your #trashtag event">
-      </div>
+  <div class-"row">
+    <div class-"col-md-12">
+      <a href="/">Home</a>&nbsp|&nbsp
+      <a href="/events">View All Events</a>
     </div>
+  </div> 
 
-    <!-- =============== ORGANIZER ROW  =============== -->
+  <!-- =============== TITLE =============== -->
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="fullName">Name</label>
-        <input type="text" class="form-control" id="fullName" placeholder="Enter your name">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="email">Email Address</label>
-        <input type="email" class="form-control" id="email" placeholder="name@example.com">
-      </div>
-    </div>
+  <div class-"row">
+    <div class-"col-md-12">
+      <br>
+      <h1>Add a #trashtag event!</h1>
+      <br>
 
-    <!-- =============== ADDRESS ROWS  =============== -->
+      <!-- =============== FORM START =============== -->
 
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="addrOne">Address</label>
-        <input type="text" class="form-control" id="addrOne" placeholder="1234 Main St">
-      </div>
-    </div>
+      <form id="addEvent">
 
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="addrTwo">Address 2</label>
-        <input type="text" class="form-control" id="addrTwo" placeholder="Apartment, studio, or floor">
-      </div>
-    </div>
+        <!-- =============== TITLE ROW =============== -->
 
-    <!-- =============== CITY STATE ZIP  =============== -->
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="eventTitle">Event Title</label>
+            <input type="text" class="form-control" id="eventTitle" placeholder="Name your #trashtag event" required>
+          </div>
+        </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city">
-      </div>
+        <!-- =============== ORGANIZER ROW =============== -->
 
-      <div class="form-group col-md-4">
-        <label for="state">State</label>
-        <input type="text" class="form-control" id="state">
-      </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="fullName">Name</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+          </div>
+        </div>
 
-      <div class="form-group col-md-2">
-        <label for="zip">Zip</label>
-        <input type="text" class="form-control" id="zip">
-      </div>
-    </div>
+        <!-- =============== ADDRESS ROWS =============== -->
 
-    <!-- =============== EVENT REQUIREMENTS  =============== -->
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="addrOne">Address</label>
+            <input type="text" class="form-control" id="addrOne" placeholder="1234 Main St" required>
+          </div>
+        </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-3">
-        <label for="eventDate">Date</label>
-        <input type="date" class="form-control" id="eventDate">
-      </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="addrTwo">Address 2</label>
+            <input type="text" class="form-control" id="addrTwo" placeholder="Apartment, studio, or floor">
+          </div>
+        </div>
 
-      <div class="form-group col-md-3">
-        <label for="eventTime">Start Time</label>
-        <input type="time" class="form-control" id="eventTime">
-      </div>
+        <!-- =============== CITY STATE ZIP =============== -->
 
-      <div class="form-group col-md-6">
-        <label for="byob">Will you provide bags?</label><br>
-        <select class-"form-control" id="byob" required>
-          <option value="false">Yes</option>
-          <option value="true">No</option>
-        </select>
-      </div>
-    </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" required>
+          </div>
 
-    <!-- =============== EVENT DESCRIPTION  =============== -->
+          <div class="form-group col-md-4">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" required>
+          </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="eventDesc">Describe your event</label>
-        <textarea type="text" class="form-control" id="eventDesc"> </textarea>
-      </div>
-    </div>
+          <div class="form-group col-md-2">
+            <label for="zip">Zip</label>
+            <input type="text" class="form-control" id="zip" required>
+          </div>
+        </div>
 
-    <!-- =============== BUTTON  =============== -->
+        <!-- =============== EVENT REQUIREMENTS =============== -->
 
-    <div class="form-row">
-      <button type="submit" id="addEvent" class="btn btn-primary">Add Event!</button>
-    </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="eventDate">Date</label>
+            <input type="date" class="form-control" id="eventDate" required>
+          </div>
 
-  </form> <!-- end form-->
+          <div class="form-group col-md-3">
+            <label for="eventTime">Start Time</label>
+            <input type="time" class="form-control" id="eventTime" required>
+          </div>
 
+          <div class="form-group col-md-6">
+            <label for="byob">Bring your own bag?</label><br>
+            <select class-"form-control" id="byob">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- =============== EVENT DESCRIPTION =============== -->
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="eventDesc">Describe your event</label>
+            <textarea type="text" class="form-control" id="eventDesc" required></textarea>
+          </div>
+        </div>
+
+        <!-- =============== BUTTON =============== -->
+
+        <div class="form-row">
+          <button type="submit" id="addEvent" class="btn btn-primary">Add Event!</button>
+        </div>
+
+      </form> <!-- end form-->
+    </div> <!-- end columns -->
+  </div> <!-- end row -->
 </div> <!-- end Container-->
