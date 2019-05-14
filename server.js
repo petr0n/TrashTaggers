@@ -7,9 +7,6 @@ const db = require("./models");
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const moment = require("moment");
-
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -59,7 +56,6 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
-
 
 
 // Starting the server, syncing our models ------------------------------------/
