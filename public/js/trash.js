@@ -33,7 +33,7 @@ $(function () {
         }).then(
             function (data) {
                console.log(data);
-               window.location.href = "/event/" + data.eventId;
+               window.location.href = "/event/" + data.EventId;
             }
         ); // ==> end POST request
     }) // ==> end add an event
