@@ -20,8 +20,6 @@ router.get('/', function (req, res) {
 		order: [['eventDateTime', 'ASC']],
 		limit: 5
 	}).then(function (results) {
-		// res.json(res.user); 
-		// console.log('req.user', req.user);
 		return res.render("index", { events: results, user: req.user });
 	});
 });
@@ -65,6 +63,19 @@ router.get('/event/:id', function (req, res) {
 		console.log(req.query.joined);
 		return res.render("viewevent", { event: results, user: req.user, joined: req.query.joined });
 	});
+});
+
+// join if already logged in
+router.get("/join/:id", isLoggedIn, function (req, res) {
+	db.UsersEvents.create({
+		UserId: req.user.id,
+		EventId: req.params.id
+	}).then(function (dbUsersEvents) {
+		// console.log(dbUsersEvents)
+		
+		res.redirect('/event/' + req.params.id + '?joined=1');
+	});
+
 });
 
 
