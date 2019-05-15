@@ -1,10 +1,10 @@
 {
   "development": {
     "username": "root",
-    "password": "o7kLUrUb18gdzQzu",
+    "password": "root",
     "database": "trashTaggerDb",
     "host": "localhost",
-    "port": 8889,
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {

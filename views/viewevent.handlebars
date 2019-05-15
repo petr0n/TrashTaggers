@@ -5,30 +5,44 @@
         {{> page-header title="" }}
 
         {{#if joined}}
-        <h4 class="p-3 mb-2 bg-success text-white">Thanks for siging up to help out with this event! You are making a difference!</h4>
+        <h4 class="p-3 mb-2 bg-success text-white">Thanks for siging up to help out with this event! You are making a
+            difference!</h4>
         {{/if}}<br><br>
 
         <!-- =============== AN EVENT =============== -->
         {{#if event}}
-            {{#each event}}
-            <div class="row">
-                <div class="col-md-7">
-                    <h2 class="card-title">{{eventTitle}}</h2>
-                    <p class="card-text">{{eventDesc}}</p>
-                    <p class="card-text">{{eventLocation}}</p>
-                    <p class="card-text">{{eventDateTime}}</p>
-                    <p>Bags Needed: {{byob}}</p>
+        {{#each event}}
+        <div class="row">
+            <div class="col-md-7">
+                <h2 class="card-title">{{eventTitle}}</h2>
+                <p class="card-text">{{eventDesc}}</p>
+                <p class="card-text">{{eventLocation}}</p>
+                <p class="card-text">{{eventDateTime}}</p>
+                {{#if byob}}
+                <p class="card-text">Note: You will need to bring your own garbage bags.</p>
+                {{else}}
+                <p class="card-text">Note: Garbage bags will be provided.</p>
+                {{/if}}
 
-                    <h4>Participants</h4>
-                    Names go here
-                </div>
-                <div class="col-md-5">
-                    <a href="#" data-id="{{id}}" class="joinBtn">Join</a>
-                    Map GOes here
-                </div>
+                <hr>
+                <h4>Participants</h4>
+                {{#each UsersEvents}}
+                <ul>
+                    {{#if organizer}}
+                    <li class="card-text">{{User.fullName}}, {{User.email}} (Organizer)</li>
+                    {{else}}
+                    <li class="card-text">{{User.fullName}}, {{User.email}}</li>
+                    {{/if}}
+                </ul>
+                {{/each}}
             </div>
+            <div class="col-md-5">
+                <a href="#" data-id="{{id}}" class="joinBtn">Join</a>
+                Map GOes here
+            </div>
+        </div>
 
-            {{/each}}
+        {{/each}}
         {{/if}}
 
         {{!-- 
