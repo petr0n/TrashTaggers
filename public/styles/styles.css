@@ -40,7 +40,7 @@ h3 {
 
 
 /* index */
-.modalBtn {
+.btn.modalBtn {
   border-radius: 3px;
   background-color: #7ED320;
   color: white;

@@ -27,10 +27,9 @@ router.get('/', function (req, res) {
 });
 
 //Return add event view
-router.get("/addEvent", function (req, res) {
-	let data = { x: "f" };
+router.get("/addEvent", isLoggedIn, function (req, res) {
 	// console.log('addevent req.user:', req.user);
-	return res.render("addevent", { data: data, user: req.user });
+	return res.render("addevent", { user: req.user });
 });
 
 
@@ -135,7 +134,6 @@ router.post("/api/join/:eventId", function (req, res) {
 });
 
 
-// TODO maybe delete
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 	console.log('req', req.isAuthenticated());
@@ -144,7 +142,7 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	// if they aren't redirect them to the home page
-	res.redirect('/auth/google');
+	res.redirect('/');
 }
 
 
