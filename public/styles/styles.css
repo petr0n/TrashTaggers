@@ -60,6 +60,22 @@ h3 {
   max-width: 100%; 
 }
 
+.current-events .header {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: .8em;
+  text-transform: uppercase;
+}
+.row.event {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  font-size: .8em;
+}
+.row.event h4 a{
+  color: rgb(98, 160, 26);
+}
+
 /* footer */
 
 footer {
