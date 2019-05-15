@@ -24,7 +24,7 @@ $(function () {
             byob: $("#byob").val().trim(),
         } // ==> end var newEvent
 
-        console.log(newEvent);
+        console.log('add event1:',newEvent);
         //send the POST request
         $.ajax("/api/add/event", {
             type: "POST",
@@ -32,8 +32,9 @@ $(function () {
 
         }).then(
             function (data) {
-               console.log(data);
-               window.location.href = "/event/" + data.eventId;
+               console.log('add event2:');
+               console.log( data);
+               window.location.href = "/event/" + data.EventId;
             }
         ); // ==> end POST request
     }) // ==> end add an event
