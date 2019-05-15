@@ -87,10 +87,14 @@ $(function () {
         var isActive = i == 0 ? " active" : "";
         var $this = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node;
         var slide = $('<div class="carousel-item ' + isActive + '" data-interval="5000"></div>');
-        slide.append('<img class="d-block w-100" src="' + $this.thumbnail_resources[2].src + '"><div class="carousel-caption d-none d-md-block">' + $this.edge_media_to_caption.edges[0].node.text + '</div>');
+        slide.append('<img class="d-block w-100" src="' + $this.thumbnail_resources[2].src + '"><div class="carousel-caption d-none d-md-block">' + truncateString($this.edge_media_to_caption.edges[0].node.text, 100) + '</div>');
         // console.log($this.edge_media_to_caption.edges[0].node.text);
         $('#images').append(slide);
       }
     });
-    
+
+    function truncateString(str, num) {
+        return str.length > num ? str.slice(0, num) + "..." : str;
+    }
+
 }) // ==> end CODE
