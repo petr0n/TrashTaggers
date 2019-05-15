@@ -14,7 +14,10 @@
         {{#each event}}
         <div class="row">
             <div class="col-md-7">
-                <h2 class="card-title">{{eventTitle}}</h2>
+                <div style="float:right;">
+                    <a class="btn modalBtn" data-id="{{id}}" href="#" role="button" data-action="join">Join</a>
+                </div>
+                <h2>{{eventTitle}}</h2>
                 <p class="card-text">{{eventDesc}}</p>
                 <p class="card-text">{{eventLocation}}</p>
                 <p class="card-text">{{eventDateTime}}</p>
@@ -37,19 +40,18 @@
                 {{/each}}
             </div>
             <div class="col-md-5">
-                <a class="btn modalBtn" data-id="{{id}}" href="#" role="button" data-action="join">Join</a>
+                <div id="map"></div>
                 <script>
-                
                     initMap = function() {
-                        var mpls = { lat: 44.9778, lng: -93.2650 };
+                        // var mpls = { lat: 44.9778, lng: -93.2650 };
+                        let addr = encodeURI('{{eventLocation}}');
+                        $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + addr + '&sensor=false&key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y', null, function (data) {
+                        var p = data.results[0].geometry.location;
+                        var latlng = new google.maps.LatLng(p.lat, p.lng);
                         var map = new google.maps.Map(
                             document.getElementById('map'), 
-                            { zoom: 10, center: mpls }
+                            { zoom: 12, center: latlng }
                         );
-                        let add = encodeURI('{{eventLocation}}');
-                        $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + addr + '&sensor=false&key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y', null, function (data) {
-                        var p = data.results[0].geometry.location
-                        var latlng = new google.maps.LatLng(p.lat, p.lng);
                         var aMarker = new google.maps.Marker({
                             position: latlng, 
                             map: map

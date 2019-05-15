@@ -95,7 +95,14 @@ footer {
 }
 
 
-
+#home #map {
+  height: 650px;
+  width: 100%;
+}
+#event #map {
+  height: 400px;
+  width: 400px;
+}
 
 .list-group-item {
   line-height: 2.5;
