@@ -80,7 +80,7 @@
                 var p = data.results[0].geometry.location
                 var latlng = new google.maps.LatLng(p.lat, p.lng);
                 google.maps.event.addListener(map, 'click', function(event) {
-                  addMarker(latlng, map, namesArray[x])
+                  addMarker(latlng, map, namesArray[x]);
                 });
               });
             }
