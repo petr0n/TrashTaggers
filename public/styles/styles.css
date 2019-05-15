@@ -40,6 +40,12 @@ h3 {
 
 
 /* index */
+.modalBtn {
+  border-radius: 3px;
+  background-color: #7ED320;
+  color: white;
+}
+
 
 /* page-header */
 .nav {
@@ -79,12 +85,13 @@ h3 {
 /* footer */
 
 footer {
-  margin-top: 100px;
-  background-color: #a7cdf2;
-  height: 100px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: #C4EAFF;
+  border-top: 8px solid #7ED320;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin-top: 100px;
 }
 
 
