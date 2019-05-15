@@ -36,15 +36,7 @@
         <img src="../../images/flower.png" alt="Flower" class="flower">
       </div>
     </header>
-    <!-- =============== JUMBOTRON  =============== -->
-  
-    {{!-- <div class="jumbotron jumbotron-fluid" style="text-align:center;">
-      <div class="container">
-        <h1 class="display-4"
-          style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">
-          TrashTaggers!</h1>
-      </div>
-    </div> --}}
+
     <div class="container">
       {{{body}}}
     </div>
@@ -66,16 +58,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="/js/trash.js"></script>
-
-  <script>$.get('https://www.instagram.com/explore/tags/trashtag/?__a=1', function (data, status) {
-      for (var i = 0; i < 6; i++) {
-        var isActive = i == 0 ? " active" : "";
-        var $this = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node;
-        var slide = $('<div class="carousel-item ' + isActive + '" data-interval="5000"></div>');
-        slide.append('<img class="d-block w-100" src="' + $this.thumbnail_resources[2].src + '">');
-        $('#images').append(slide);
-      }
-    });</script>
 
 </body>
 </html>
