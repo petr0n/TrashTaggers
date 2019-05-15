@@ -137,7 +137,6 @@ router.post("/api/join/:eventId", function (req, res) {
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 	console.log('req', req.isAuthenticated());
-	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated())
 		return next();
 

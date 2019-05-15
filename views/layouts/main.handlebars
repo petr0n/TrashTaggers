@@ -19,28 +19,28 @@
 
 <body>
 
-
-    <header>
-      <div class="container">
-        <img src="../../images/happybags.png" alt="Happy Bags" class="bags">
-        <h1>TrashTaggers</h1>
-        <img src="../../images/flower.png" alt="Flower" class="flower">
-      </div>
-    </header>
-
+  <header>
     <div class="container">
-      {{{body}}}
+      <img src="../../images/happybags.png" alt="Happy Bags" class="bags">
+      <h1>TrashTaggers</h1>
+      <img src="../../images/flower.png" alt="Flower" class="flower">
     </div>
+  </header>
+  {{> nav }}
+
+  <div class="container">
+    {{{body}}}
+  </div>
 
     
-    {{> login-modal }}
+  {{> login-modal }}
 
   <!-- =============== FOOTER =============== -->
 
   <footer>
     TrashTaggers&nbsp;&nbsp;&nbsp;
     <a href="/">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="/addEvent">Create an Event</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a class="nav-link modalBtn" data-action="create-event">Create an Event</a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="/events">View All Events</a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="/logout">Logout</a>&nbsp;
   </footer>
