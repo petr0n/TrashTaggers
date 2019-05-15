@@ -40,6 +40,12 @@ h3 {
 
 
 /* index */
+.modalBtn {
+  border-radius: 3px;
+  background-color: #7ED320;
+  color: white;
+}
+
 
 /* page-header */
 .nav {
@@ -60,19 +66,43 @@ h3 {
   max-width: 100%; 
 }
 
+.current-events .header {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: .8em;
+  text-transform: uppercase;
+}
+.row.event {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  font-size: .8em;
+}
+.row.event h4 a{
+  color: rgb(98, 160, 26);
+}
+
 /* footer */
 
 footer {
-  margin-top: 100px;
-  background-color: #a7cdf2;
-  height: 100px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: #C4EAFF;
+  border-top: 8px solid #7ED320;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin-top: 100px;
 }
 
 
-
+#home #map {
+  height: 650px;
+  width: 100%;
+}
+#event #map {
+  height: 400px;
+  width: 400px;
+}
 
 .list-group-item {
   line-height: 2.5;

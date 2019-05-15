@@ -9,11 +9,11 @@
 
     <!-- =============== TABLE AND MAP =============== -->
 
-    <div class="row">
+    <div class="row current-events">
       <div class="col-md-6">
-        <h3>Current Events</h3>
+        <div class="header">Current Events</div>
 
-        <!-- =============== TABLE =============== -->
+        <!-- =============== TABLE =============== 
         
         <table class="table table-hover">
           <thead>
@@ -39,41 +39,59 @@
             {{/if}}
           </tbody>
         </table>
+        -->
+
+        {{#if events}}
+          {{#each events}}
+            <div class="row event">
+              <div class="col-md-10">
+                <h4><a href="/event/{{id}}">{{eventTitle}}</a></h4>
+                {{eventLocation}}<br>
+                {{eventDateTime}}
+              </div>
+              <div class="col-md-2">
+                <a class="btn modalBtn" data-id="{{id}}" href="#" role="button" data-action="join">Join</a>
+              </div>
+            </div>
+          {{/each}}
+        {{/if}}
         <a href="/events">View All Events</a>
       </div>
 
 
 
       <div class="col-6">
-        <h3>Current Pickup Locations</h3>
+        <div class="header">Current Pickup Locations</div>
         <div id="map"></div>
         <script>
-          let addressesArray = [ {{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ];
-          let namesArray = [ {{#if events}} {{#each events}} "{{eventTitle}}", {{/each}} {{/if}} ];
-          let locationObj = {};
+          function initMap() {}
+          $(() => {
+            let addressesArray = [ {{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ];
+            let namesArray = [ {{#if events}} {{#each events}} "{{eventTitle}}", {{/each}} {{/if}} ];
+            let locationObj = {};
 
-          function initMap() {
-            var mpls = { lat: 44.9778, lng: -93.2650 };
-            var map = new google.maps.Map(
-              document.getElementById('map'), { zoom: 10, center: mpls });
-              // var marker = new google.maps.Marker({ position: uluru, map: map });
-              //loop all the addresses and call a marker for each one
+            initMap = function() {
+              var mpls = { lat: 44.9778, lng: -93.2650 };
+              var map = new google.maps.Map(
+                document.getElementById('map'), 
+                { zoom: 10, center: mpls }
+              );
+
               for (var x = 0; x < addressesArray.length; x++) {
                 $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + addressesArray[x] + '&sensor=false&key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y', null, function (data) {
                   var p = data.results[0].geometry.location
                   var latlng = new google.maps.LatLng(p.lat, p.lng);
-                  var aMarker = new google.maps.Marker({
-                    position: latlng, 
-                    map: map,
-                    label: namesArray[x]
-                  });
+                    var aMarker = new google.maps.Marker({
+                      position: latlng, 
+                      map: map
+                    });
+                  // google.maps.event.addListener(map, 'click', function(event) {
+                  // });
                 });
               }
-              // google.maps.event.addListener(map, 'click', function(event) {
-              //   addMarker(event.latLng, map);
-              // });
-              // https://developers.google.com/maps/documentation/javascript/examples/marker-labels
             }
+            google.maps.event.addDomListener(window, 'load', initMap);
+          });
         </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y&callback=initMap"></script>
       </div>

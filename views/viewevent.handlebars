@@ -14,7 +14,10 @@
         {{#each event}}
         <div class="row">
             <div class="col-md-7">
-                <h2 class="card-title">{{eventTitle}}</h2>
+                <div style="float:right;">
+                    <a class="btn modalBtn" data-id="{{id}}" href="#" role="button" data-action="join">Join</a>
+                </div>
+                <h2>{{eventTitle}}</h2>
                 <p class="card-text">{{eventDesc}}</p>
                 <p class="card-text">{{eventLocation}}</p>
                 <p class="card-text">{{eventDateTime}}</p>
@@ -37,8 +40,26 @@
                 {{/each}}
             </div>
             <div class="col-md-5">
-                <a href="#" data-id="{{id}}" class="joinBtn">Join</a>
-                Map GOes here
+                <div id="map"></div>
+                <script>
+                    initMap = function() {
+                        let addr = encodeURI('{{eventLocation}}');
+                        $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?address=' + addr + '&sensor=false&key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y', null, function (data) {
+                        var p = data.results[0].geometry.location;
+                        var latlng = new google.maps.LatLng(p.lat, p.lng);
+                        var map = new google.maps.Map(
+                            document.getElementById('map'), 
+                                { zoom: 12, center: latlng }
+                            );
+                            var aMarker = new google.maps.Marker({
+                                position: latlng, 
+                                map: map
+                            });
+                        });
+                    }
+                
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXqDYYTFrcq1HVO8C1KX2YTMtdW-Inj2Y&callback=initMap"></script>
             </div>
         </div>
 
