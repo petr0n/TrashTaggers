@@ -23,16 +23,21 @@
 
         <!-- =============== ORGANIZER ROW =============== -->
 
+        {{#if user}}
+        
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="fullName">Name</label>
-            <input type="text" class="form-control" id="fullName" placeholder="Enter your name" required>
+            <input type="hidden" id="fullName" value="{{user.fullName}}">
+            <input type="text" class="form-control" value="{{user.fullName}}" disabled="true">
           </div>
           <div class="form-group col-md-6">
             <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            <input type="hidden" id="email" value="{{user.email}}">
+            <input type="email" class="form-control" value="{{user.email}}" disabled="true">
           </div>
         </div>
+        {{/if}}
 
         <!-- =============== ADDRESS ROWS =============== -->
 

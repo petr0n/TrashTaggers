@@ -42,7 +42,7 @@ router.get('/auth/google/join',
 				});
 				loginUrl = '/event/' + req.session.actions.eventId + '?joined=1';
 			} else {
-				loginUrl = '/createEvent/?loggedIn=1';
+				loginUrl = '/addEvent';
 			}
 		}
 		res.redirect(loginUrl);
