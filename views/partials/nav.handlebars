@@ -8,7 +8,11 @@
         <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link modalBtn" data-action="create-event">Create an Event</a>
+        {{#if user}}
+          <a href="/addEvent" class="nav-link">Create an Event</a>
+        {{else}}
+          <a href="#" class="nav-link modalBtn" data-action="create-event">Create an Event</a>
+        {{/if}}
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/events">View All Events</a>
