@@ -50,6 +50,15 @@ h3 {
 }
 
 
+/* login */
+.loginBtn {
+  width: 210px;
+  display: block;
+  margin: 0 auto;
+}
+.loginBtn img {
+  max-width: 100%; 
+}
 
 /* footer */
 

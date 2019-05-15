@@ -4,25 +4,40 @@
     <div class="container">
         {{> page-header title="" }}
 
+        {{#if joined}}
+        <h4 class="p-3 mb-2 bg-success text-white">Thanks for siging up to help out with this event! You are making a difference!</h4>
+        {{/if}}<br><br>
+
         <!-- =============== AN EVENT =============== -->
         {{#if event}}
             {{#each event}}
-                <h2 class="card-title">{{eventTitle}}</h2>
-                <p class="card-text">{{eventDesc}}</p>
+            <div class="row">
+                <div class="col-md-7">
+                    <h2 class="card-title">{{eventTitle}}</h2>
+                    <p class="card-text">{{eventDesc}}</p>
+                    <p class="card-text">{{eventLocation}}</p>
+                    <p class="card-text">{{eventDateTime}}</p>
+                    <p>Bags Needed: {{byob}}</p>
 
-                <p class="card-text">{{eventLocation}}</p>
-                <p class="card-text">{{eventDateTime}}</p>
+                    <h4>Participants</h4>
+                    Names go here
+                </div>
+                <div class="col-md-5">
+                    <a href="#" data-id="{{id}}" class="joinBtn">Join</a>
+                    Map GOes here
+                </div>
+            </div>
 
-                <a href="#" data-id="{{id}}" class="joinBtn">Join</a>
-                Bags Needed: {{byob}}
             {{/each}}
         {{/if}}
 
-        {{!-- {{#if user}}
+        {{!-- 
+        {{#if user}}
         {{#each user}}
         {{fullName}}<br>
         {{/each}}
-        {{/if}} --}}
+        {{/if}} 
+        --}}
 
     </div> <!-- end Container-->
 </div><!-- end id event -->

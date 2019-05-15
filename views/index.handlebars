@@ -50,7 +50,7 @@
         <script>
           let addressesArray = [ {{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ];
           let namesArray = [ {{#if events}} {{#each events}} "{{eventTitle}}", {{/each}} {{/if}} ];
-
+          let locationObj = {};
 
           function initMap() {
             var mpls = { lat: 44.9778, lng: -93.2650 };
@@ -84,7 +84,7 @@
     <!-- =============== INSTAGRAM =============== -->
 
     <div class="row">
-      <div class="col-12">
+      <div class="col-md-6 offset-md-3">
         <h3><strong>Check out the latest #trashtag photos from Intsagram!</strong></h3>
         <br>
         <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">

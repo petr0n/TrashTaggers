@@ -36,38 +36,13 @@
         <img src="../../images/flower.png" alt="Flower" class="flower">
       </div>
     </header>
-    <!-- =============== JUMBOTRON  =============== -->
-  
-    {{!-- <div class="jumbotron jumbotron-fluid" style="text-align:center;">
-      <div class="container">
-        <h1 class="display-4"
-          style="margin-left: 300px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-shadow: 4px 4px black; color:rgb(107, 107, 107);">
-          TrashTaggers!</h1>
-      </div>
-    </div> --}}
+
     <div class="container">
       {{{body}}}
     </div>
 
-    <div class="modal" id="login" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Log In</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Log In with Google</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary loginBtn" href="/auth/google?action=join&eventId=4">Log In</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    {{> login-modal }}
 
   <!-- =============== FOOTER =============== -->
 
@@ -84,16 +59,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="/js/trash.js"></script>
-
-  <script>$.get('https://www.instagram.com/explore/tags/trashtag/?__a=1', function (data, status) {
-      for (var i = 0; i < 6; i++) {
-        var isActive = i == 0 ? " active" : "";
-        var $this = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node;
-        var slide = $('<div class="carousel-item ' + isActive + '" data-interval="5000"></div>');
-        slide.append('<img class="d-block w-100" src="' + $this.thumbnail_resources[2].src + '">');
-        $('#images').append(slide);
-      }
-    });</script>
 
 </body>
 </html>

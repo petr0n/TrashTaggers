@@ -4,41 +4,38 @@ const passport = require("passport");
 
 let db = require("../models/");
 
-// GET /auth/google
-// router.get('/auth/google',
-// 	passport.authenticate('google', { 
-// 		scope: [
-// 			'https://www.googleapis.com/auth/userinfo.profile',
-// 			'https://www.googleapis.com/auth/userinfo.email'
-// 		] 
-// 	})
-// );
-
 router.get('/auth/google', (req, res, next) => {
-	let state = req.query;
+
+	//console.log('req.query: ', req.query);
+	// put any url params into the session
+	req.session.actions = req.query;
+
 	const authenticator = passport.authenticate('google', { 
 		scope: [
 			'https://www.googleapis.com/auth/userinfo.profile',
 			'https://www.googleapis.com/auth/userinfo.email'
-		], 
-		state 
+		]
 	})
 	authenticator(req, res, next);
 });  
 
 router.get('/auth/google/join', 
   passport.authenticate('google', { 
-		// successRedirect : '/?success=1',
 		failureRedirect: '/error',
 		session: true 
 	}),
 	(req, res) => {
-		//	console.log('wooo we authenticated, here is our user object:', req.user);
-		// res.json(req.user);
-		// req.session.fullName = req.user.fullName;
-		// req.session.email = req.user.email;
-		console.log('callback req.query: ', req.query);
-		res.redirect('/?loggedIn=true');
+		// console.log('callback req.query: ', req.query);
+		console.log('req.session.actions: ', req.session.actions.eventId);
+		let loginUrl = '/?loggedIn=true';
+		if (req.session.actions) {
+			if (req.session.actions.action === 'join') {
+				loginUrl = '/event/' + req.session.actions.eventId + '?joined=1';
+			} else {
+				loginUrl = '/createEvent/?loggedIn=1';
+			}
+		}
+		res.redirect(loginUrl);
 	}
 );
 
