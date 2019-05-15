@@ -28,7 +28,11 @@
                             <td>{{eventLocation}}</td>
                             <td>{{eventDateTime}}</td>
                             <td>{{eventDesc}}</td>
-                            <td>{{byob}}</td>
+                            {{#if byob}}
+                            <td>Yes</td>
+                            {{else}}
+                            <td>No</td> 
+                            {{/if}}
                             <td><a class="btn btn-primary" data-id="{{id}}" href="#" role="button">Join</a></td>
                         </tr>
                         {{/each}}
