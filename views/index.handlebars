@@ -9,7 +9,7 @@
 
     <!-- =============== TABLE AND MAP =============== -->
 
-    <div class="row current-events">
+    <div class="row current-events mb-5">
       <div class="col-lg-6 col-sm-12">
         <div class="header">Current Events</div>
 
@@ -35,9 +35,8 @@
         <div id="map"></div>
         <script>
         
-            let addressesArray = [{{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ];
-            let namesArray = [{{#if events}} {{#each events}} "{{eventTitle}}", {{/each}} {{/if}} ];
-            // let locationObj = {};
+          let addressesArray = [{{#if events}} {{#each events}} "{{eventLocation}}", {{/each}} {{/if}} ];
+          let namesArray = [{{#if events}} {{#each events}} "{{eventTitle}}", {{/each}} {{/if}} ];
 
           initMap = function () {
             var mpls = { lat: 44.9778, lng: -93.2650 };
