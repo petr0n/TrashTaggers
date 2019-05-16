@@ -109,6 +109,11 @@ footer {
   line-height: 2.5;
 }
 
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, .5)
+
+}
 /*
 .bigContainer {
   background-image: url("../images/background.jpg");
