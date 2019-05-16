@@ -41,7 +41,11 @@
   <footer>
     TrashTaggers&nbsp;&nbsp;&nbsp;
     <a href="/">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <a class="nav-link modalBtn" data-action="create-event">Create an Event</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    {{#if user}}
+      <a href="/addEvent" class="nav-link">Create an Event</a>
+    {{else}}
+      <a href="#" class="nav-link modalBtn" data-action="create-event">Create an Event</a>
+    {{/if}}&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="/events">View All Events</a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="/logout">Logout</a>&nbsp;
   </footer>

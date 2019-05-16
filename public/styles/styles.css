@@ -66,6 +66,10 @@ h3 {
   max-width: 100%; 
 }
 
+.current-events {
+  margin-bottom: 50px;
+}
+
 .current-events .header {
   margin-bottom: 25px;
   color: #333;
