@@ -13,3 +13,5 @@ This project utilizes MySQL, Node, Express, Handlebars, Bootstrap, Google Authen
 View our project here: https://trashtaggers.herokuapp.com/
 
 Contributers: Jason Fleming, Julia Fercello, Christiaan Simmons, and Peter Abeln
+
+Github: https://github.com/petr0n/TrashTaggers
